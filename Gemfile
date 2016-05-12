@@ -27,6 +27,10 @@ group :production do
   gem 'rails_12factor'
 end
 
+gem 'slack-ruby-client'
+gem 'celluloid-io', '~> 0.17.3'
+gem 'dotenv'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
