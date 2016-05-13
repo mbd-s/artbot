@@ -1,0 +1,12 @@
+<h2>Art Up Close</h2>
+
+<div>
+  <%= image_tag @art.image.url(:medium) %><br>
+  <strong>Name:</strong> <%= @art.title %><br>
+  <strong>Artist:</strong> <%= @art.description %>
+  <strong>Year:</strong> <%= @art.year %>
+  <strong>Century:</strong> <%= @art.century %>
+  <strong>Medium:</strong> <%= @art.medium %>
+
+
+<%=button_to "Delete", @art, method: :delete %>
