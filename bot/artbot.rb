@@ -33,9 +33,9 @@ end
 module SlackBotEM
   extend SlackBotHooks
 
-  def self.start
+  def self.start(slack_api_token)
     rc = HTTP.post("https://slack.com/api/rtm.start", params: {
-      token: ENV['SLACK_API_TOKEN']
+      token: slack_api_token
     })
 
     rc = JSON.parse(rc.body)

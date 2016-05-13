@@ -1,2 +1,3 @@
 require_relative "./../../bot/artbot.rb"
-SlackBotEM.start
+
+SlackBotEM.start( ENV['SLACK_API_TOKEN'] )
