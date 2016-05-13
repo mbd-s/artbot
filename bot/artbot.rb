@@ -2,13 +2,7 @@ require 'http'
 require 'json'
 require 'eventmachine'
 require 'faye/websocket'
-# require 'sinatra'
 
-
-# bot can actually listen to things, let's obtain a websocket url
-# starts a real-time messaging session
-# does an rtm.start call and we will get back a URL
-#
 rc = HTTP.post("https://slack.com/api/rtm.start", params: {
   token: ENV['SLACK_API_TOKEN']
 })
