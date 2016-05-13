@@ -4,7 +4,8 @@
 # 'https://www.rijksmuseum.nl/api/en/collection?' + ENV['RIJKMUSEUM_API_TOKEN'] + '&format=json&maker=Vincent+van+Gogh&type=painting&imgonly=True'
 # 'https://www.rijksmuseum.nl/api/en/collection?' + ENV['RIJKMUSEUM_API_TOKEN'] + '&format=json&maker=Rembrandt+Harmensz.+van+Rijn&type=painting&imgonly=True'
 # single object by objectNumber 'https://www.rijksmuseum.nl/api/en/collection/SK-C-251?' + 'key=ENV['RIJKMUSEUM_API_TOKEN']' + '&format=json'
-
+Art.destroy_all
+p "All old art has been cleared."
 
 art_list = [
   {title: 'Woman Reading a Letter', artist: 'Johannes Vermeer', image: 'http://lh3.ggpht.com/_hNgP8xlzkSVD_XfBIy3j6BSWyGqdc0N921xFJbXG7jwFbQ7hi8IuTO6AIAsQf_RI3_dt4_EEncuuLY5pVO0vT50qpY=s0', object_number: 'SK-C-251', year: '1663', century: '17th', medium: 'painting'},
@@ -16,5 +17,5 @@ art_list = [
 
 art_list.each do |art|
   Art.create(art)
-  p "made an art!"
+  p "A new artwork was created."
 end
