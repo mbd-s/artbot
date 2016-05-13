@@ -31,6 +31,7 @@ gem 'http'
 gem 'json'
 gem 'faye-websocket'
 gem 'dotenv'
+gem 'thin'
 gem 'eventmachine'
 
 gem 'hirb'
