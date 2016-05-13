@@ -5,11 +5,11 @@
 
       <% @arts.each do |art| %>
         <div>
-         <%= link_to image_tag art.image, :class => "art-image-show" %>
-         <%= link_to city_picture), city_path(city), class: "city-image img-responsive" %>
+         <%= image_tag art.image, :class => "art-image-show" %>
+
         </div>
         <div>
-         Title: <%= art.title %>
+         Title: <%=link_to art.title, art_path(art) %>
         </div>
         <div>
          Year: <%= art.year %><br>
