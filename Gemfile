@@ -27,13 +27,21 @@ group :production do
   gem 'rails_12factor'
 end
 
+# http reqs
 gem 'http'
+# json parser
 gem 'json'
+# websockets
 gem 'faye-websocket'
-gem 'dotenv'
 gem 'eventmachine'
-
+# .env
+gem 'dotenv'
+# rails console db views
 gem 'hirb'
+
+# bootstrap
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
