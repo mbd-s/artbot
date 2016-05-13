@@ -35,6 +35,7 @@ gem 'http'
 gem 'json'
 # websockets
 gem 'faye-websocket'
+gem 'thin'
 gem 'eventmachine'
 # .env
 gem 'dotenv'
