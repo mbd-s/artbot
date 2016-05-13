@@ -38,8 +38,10 @@ ActiveRecord::Schema.define(version: 20160513032446) do
     t.datetime "updated_at",                          null: false
   end
 
+  add_index "admins", ["confirmation_token"], name: "index_admins_on_confirmation_token", unique: true, using: :btree
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
+  add_index "admins", ["unlock_token"], name: "index_admins_on_unlock_token", unique: true, using: :btree
 
   create_table "arts", force: :cascade do |t|
     t.string   "title"
