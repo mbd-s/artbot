@@ -35,6 +35,15 @@ class ArtsController < ApplicationController
     end
   end
 
+  def destroy
+    art = Art.find(params[:id])
+
+    art.destroy
+
+    redirect_to arts_path
+  end
+
+
   private
     def art_params
       params.require(:art).permit(:title, :artist, :image, :year, :century, :medium)
