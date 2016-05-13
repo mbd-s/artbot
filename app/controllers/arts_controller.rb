@@ -21,6 +21,29 @@ class ArtsController < ApplicationController
     render :show
   end
 
+  def edit
+    @art = Art.find(params[:id])
+    render :edit
+  end
+
+  def update
+    art = Art.find(params[:id])
+
+
+    if art.update(art_params)
+      redirect_to art_path(art)
+    end
+  end
+
+  def destroy
+    art = Art.find(params[:id])
+
+    art.destroy
+
+    redirect_to arts_path
+  end
+
+
   private
     def art_params
       params.require(:art).permit(:title, :artist, :image, :year, :century, :medium)
