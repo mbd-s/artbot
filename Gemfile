@@ -35,6 +35,8 @@ gem 'faye-websocket'
 gem 'dotenv'
 gem 'eventmachine'
 
+gem 'hirb'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
