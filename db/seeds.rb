@@ -5,9 +5,9 @@
 
 
 art_list = [
-  {title: 'Title1', artist: 'Artist1', image: 'img1.png',  year: '1662',  century: 'Sixteenth',  medium: 'Mixed media'},
-  {title: 'Title2', artist: 'Artist2', image: 'img2.png',  year: '1777',  century: 'Sixteenth',  medium: 'Some media'},
-  {title: 'Title3', artist: 'Artist3', image: 'img3.png',year: '1888', century: 'Eighteenth', medium: 'Other media'}
+  {title: 'Woman Reading a Letter', artist: 'Johannes Vermeer', image: 'http://lh3.ggpht.com/_hNgP8xlzkSVD_XfBIy3j6BSWyGqdc0N921xFJbXG7jwFbQ7hi8IuTO6AIAsQf_RI3_dt4_EEncuuLY5pVO0vT50qpY=s0', year: '1662', century: 'Sixteenth', medium: 'Mixed media'},
+  {title: 'Title2', artist: 'Artist2', image: 'img2.png', year: '1777', century: 'Sixteenth', medium: 'Some media'},
+  {title: 'Title3', artist: 'Artist3', image: 'img3.png', year: '1888', century: 'Eighteenth', medium: 'Other media'}
   ]
 
 art_list.each do |art|
