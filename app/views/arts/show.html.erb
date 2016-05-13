@@ -1,12 +1,13 @@
 <h2>Art Up Close</h2>
 
 <div>
-  <%= image_tag @art.image.url(:medium) %><br>
+
+  <%= image_tag @art.image, :class => "art-image-show" %><br>
   <strong>Name:</strong> <%= @art.title %><br>
-  <strong>Artist:</strong> <%= @art.description %>
-  <strong>Year:</strong> <%= @art.year %>
-  <strong>Century:</strong> <%= @art.century %>
-  <strong>Medium:</strong> <%= @art.medium %>
+  <strong>Artist:</strong> <%= @art.artist %><br>
+  <strong>Year:</strong> <%= @art.year %><br>
+  <strong>Century:</strong> <%= @art.century %><br>
+  <strong>Medium:</strong> <%= @art.medium %><br>
 
 
-<%=button_to "Delete", @art, method: :delete %>
+<!-- <%=button_to "Delete", @art, method: :delete %> -->
