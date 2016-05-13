@@ -1,8 +1,9 @@
 <h2>Art Up Close</h2>
 
 <div>
-
-  <%= image_tag @art.image, :class => "art-image-show" %><br>
+  <div>
+  <%= image_tag @art.image, :class => "art-image-show" %>
+</div>
   <strong>Name: </strong> <%= @art.title %><br>
   <strong>Artist: </strong> <%= @art.artist %><br>
   <strong>Year: </strong> <%= @art.year %><br>
@@ -10,4 +11,4 @@
   <strong>Medium: </strong> <%= @art.medium %><br>
 
 
-<!-- <%=button_to "Delete", @art, method: :delete %> -->
+<%=button_to "Delete", @art, method: :delete %>
