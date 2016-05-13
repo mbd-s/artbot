@@ -14,10 +14,10 @@ module SlackBotHooks
   def message(event)
     p "message event triggered"
     data = JSON.parse(event.data)
-    if data['text'] =~ /hi/i
+    if data['text'] =~ /art me/i
       {
         type: 'message',
-        text: Art.last.title,
+        text: Art.sample.image,
         channel: data['channel']
       }
     end
@@ -79,5 +79,3 @@ module SlackBotEM
   end
 
 end
-
-
