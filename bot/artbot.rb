@@ -3,7 +3,36 @@
 # require 'eventmachine'
 # require 'faye/websocket'
 
+
+module SlackBotHooks
+
+  def open(event)
+    p "open event triggered"
+    nil
+  end
+
+  def message(event)
+    p "message event triggered"
+    data = JSON.parse(event.data)
+    if data['text'] =~ /hi/i
+      {
+        type: 'message',
+        text: Art.last.title,
+        channel: data['channel']
+      }
+    end
+  end
+
+  def close(event)
+    p "close even triggered"
+    nil
+  end
+
+end
+
 module SlackBotEM
+  extend SlackBotHooks
+
   def self.start
     rc = HTTP.post("https://slack.com/api/rtm.start", params: {
       token: ENV['SLACK_API_TOKEN']
@@ -18,43 +47,30 @@ module SlackBotEM
         ws = Faye::WebSocket::Client.new(url)
 
         ws.on :open do
-          p [:open]
+          on(:open)
         end
 
         ws.on :message do |event|
-          p [:message, JSON.parse(event.data)]
-          data = JSON.parse(event.data)
-          if data['text'] == 'hi' ||
-              data['text'] == 'Hi'
-            ws.send({ type: 'message',
-              text: "~~~Hey, <@#{data['user']}>!",
-              channel: data['channel'] }.to_json)
-          end
-          if data['text'] == "Vermeer"
-            ws.send({ type: 'message',
-              text: "http://lh4.ggpht.com/u-sROQ5mLanzq7i06ja0yXBxZpBPazZN3z590K7F4ZNufmxuaA5BRHjJTiatQO_gXI-gDAWMFJeBXb55z-5NrCAl8g=s0",
-              channel: data['channel'] }.to_json)
-          end
-          if data['subtype'] == 'channel_join'
-            ws.send({ type: 'message',
-              text: "~~~Welcome to the <#{data['channel']}>, <@#{data['user']}>!",
-              channel: data['channel'] }.to_json)
-          end
-          if data['type'] == 'team_join'
-            ws.send({ type: 'message',
-              text: "~~~Welcome to the team, <@#{data['user']['id']}>!",
-              channel: "C1872M3T7" }.to_json)
-          end
+          res = on(:message, event)
+          ws.send(res.to_json) if res
         end
 
-        ws.on :close do
-          p [:close, event.code, event.reason]
+        ws.on :close do |event|
+          on(:close, event)
           ws = nil
           EM.stop
         end
       end
     }
     die_gracefully
+  end
+
+  def self.on(signal_type, event=nil)
+    case signal_type
+      when :open    then open(event)
+      when :message then message(event)
+      when :close   then close(event)
+    end
   end
 
   def self.die_gracefully
