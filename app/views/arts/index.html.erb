@@ -1,0 +1,11 @@
+
+<h1 class="arts-index-header">LIST OF ARTWORKS</h1>
+<div class="container main">
+  <div class="row inline">
+    <% @arts.each do |art| %>
+        <%= art.title %>
+        <%= art.artist %>
+        <%= art.year %>
+    <% end %>
+  </div>
+</div>
