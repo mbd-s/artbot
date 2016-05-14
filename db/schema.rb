@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160514222010) do
+ActiveRecord::Schema.define(version: 20160514224728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,18 @@ ActiveRecord::Schema.define(version: 20160514222010) do
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
   add_index "admins", ["unlock_token"], name: "index_admins_on_unlock_token", unique: true, using: :btree
 
+  create_table "artists", force: :cascade do |t|
+    t.string   "name"
+    t.string   "birth"
+    t.string   "death"
+    t.string   "nationality"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "art_id"
+  end
+
+  add_index "artists", ["art_id"], name: "index_artists_on_art_id", using: :btree
+
   create_table "arts", force: :cascade do |t|
     t.string   "title"
     t.string   "image"
@@ -54,4 +66,5 @@ ActiveRecord::Schema.define(version: 20160514222010) do
     t.string   "object_number"
   end
 
+  add_foreign_key "artists", "arts"
 end
