@@ -7,29 +7,25 @@
 module SlackBotHooks
 
   def open(event)
-    p "open event triggered"
+    p "~~~~~open event triggered~~~~~"
+    p
     nil
   end
 
   def message(event)
     p "message event triggered"
     data = JSON.parse(event.data)
-    if data['text'] =~ /art me/i
+    # uncomment line below to see full set of incoming data
+    # p data
+    msg = data['text']
+    if msg =~ /art me/i
       p "art me triggered"
       p "returning #{Art.all.sample.image} "
       {
         type: 'message',
         text: Art.all.sample.image,
-        channel: data['channel']
+        channel: data['channel'],
       }
-    elsif data['text'] =~ /.*weather.*(in|at) (?<location>\w*)\?$/i
-      m = data['text'].match(/.*weather.*(in|at) (?<location>\w*)\?$/i)
-      {
-        type: 'message',
-        text: "The weather in #{m[:location]} is nice!",
-        channel: data['channel']
-      }
-    end
 
   end
 
