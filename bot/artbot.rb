@@ -15,7 +15,7 @@ module SlackBotHooks
     p "Message event triggered"
     data = JSON.parse(event.data)
     # uncomment line below to see full set of incoming data
-    # p data
+    p data
     msg = data['text']
     if msg =~ /art me/i
       p "art me triggered"
@@ -47,12 +47,13 @@ module SlackBotHooks
         text: "Hi, <@#{data['user']}>.",
         channel: data['channel']
       }
-    elsif msg =~ /@artbot artists/i
+    elsif msg == "<@#{$bot_id}> artists"
       p "@artbot artists triggered"
-      p "returning #{Artist.all.map {|x| x.name}.join("\r\n")}"
+      res = Artist.all.map {|x| x.name}.join("\n")
+      p "returning #{res}"
       {
         type: 'message',
-        text: "#{Artist.all.map {|x| x.name}.join("\r\n")}",
+        text: "#{res}",
         channel: data['channel']
       }
     end
@@ -75,8 +76,9 @@ module SlackBotEM
     })
 
     rc = JSON.parse(rc.body)
-
+    $bot_id = rc['self']['id']
     url = rc['url']
+    p "bot_id = #{$bot_id}"
 
     EM.next_tick {
       EM.run do
