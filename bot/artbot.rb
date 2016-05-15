@@ -41,7 +41,7 @@ module SlackBotHooks
         text: "The weather in #{m[:location]} is nice!",
         channel: data['channel']
       }
-    elsif msg == "hi <@#{@bot_id}>"
+    elsif msg == "hi <@#{$bot_id}>"
       p "hi @artbot triggered"
       res = "Hi, <@#{data['user']}>."
       p "returning #{res}"
