@@ -39,8 +39,15 @@ module SlackBotHooks
         text: "The weather in #{m[:location]} is nice!",
         channel: data['channel']
       }
+    elsif msg =~ /hi @artbot/i
+      p "hi @artbot"
+      p "returning #{data['user']}"
+      {
+        type: 'message',
+        text: "Hi, <@#{data['user']}>.",
+        channel: data['channel']
+      }
     end
-
   end
 
   def close(event)
