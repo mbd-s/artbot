@@ -5,7 +5,8 @@
 # 'https://www.rijksmuseum.nl/api/en/collection?' + ENV['RIJKMUSEUM_API_TOKEN'] + '&format=json&maker=Rembrandt+Harmensz.+van+Rijn&type=painting&imgonly=True'
 # single object by objectNumber 'https://www.rijksmuseum.nl/api/en/collection/SK-C-251?' + 'key=ENV['RIJKMUSEUM_API_TOKEN']' + '&format=json'
 Art.destroy_all
-p "All old art has been cleared."
+Artist.destroy_all
+puts "All old art & artists have been cleared."
 
 # art lists
 vermeer_art = [
@@ -39,4 +40,4 @@ end
 add_art(vermeer, vermeer_art)
 add_art(van_gogh, van_gogh_art)
 add_art(rembrandt, rembrandt_art)
-p "Created #{Artist.count} artists, and #{Art.count} paintings."
+puts "Created #{Artist.count} artists, and #{Art.count} paintings."
