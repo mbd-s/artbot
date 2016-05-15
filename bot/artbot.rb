@@ -40,14 +40,23 @@ module SlackBotHooks
         channel: data['channel']
       }
     elsif msg =~ /hi @artbot/i
-      p "hi @artbot"
+      p "hi @artbot triggered"
       p "returning #{data['user']}"
       {
         type: 'message',
         text: "Hi, <@#{data['user']}>.",
         channel: data['channel']
       }
+    elsif msg =~ /@artbot artists/i
+      p "@artbot artists triggered"
+      p "returning #{Artist.all.map {|x| x.name}.join("\r\n")}"
+      {
+        type: 'message',
+        text: "#{Artist.all.map {|x| x.name}.join("\r\n")}",
+        channel: data['channel']
+      }
     end
+
   end
 
   def close(event)
