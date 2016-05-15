@@ -1,0 +1,30 @@
+<h2>Add New Artwork</h2>
+<%= form_for @art do |f| %>
+    <div>
+      <%= f.label :image %>
+      <%= f.text_field :image %>
+    </div>
+    <div>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+    <div>
+      <%= f.label :artist %>
+      <%= f.text_field :artist %>
+    </div>
+    <div>
+      <%= f.label :year %>
+      <%= f.text_field :year %>
+    </div>
+    <div>
+      <%= f.label :century %>
+      <%= f.text_field :century %>
+    </div>
+    <div>
+      <%= f.label :medium %>
+      <%= f.text_field :medium %>
+    </div>
+    <div>
+      <%= f.submit "Save Art" %>
+    </div>
+  <% end %>

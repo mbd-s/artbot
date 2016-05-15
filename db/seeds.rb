@@ -39,4 +39,4 @@ end
 add_art(vermeer, vermeer_art)
 add_art(van_gogh, van_gogh_art)
 add_art(rembrandt, rembrandt_art)
-# p "Created #{Artist.count} artists, and #{Art.count} paintings."
+p "Created #{Artist.count} artists, and #{Art.count} paintings."
