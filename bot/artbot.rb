@@ -5,13 +5,17 @@
 
 
 module SlackBotHooks
+  # create array from all art id's
+  @@art = Art.pluck(:id)
 
+  # stores last art piece shared
+  @@current_art = nil
   def open(event)
     p "open event triggered"
     nil
   end
 
-  def message(event)
+  def message(event, bot_id)
 
     p "Message event triggered"
     data = JSON.parse(event.data)
@@ -19,14 +23,26 @@ module SlackBotHooks
     p [:message, JSON.parse(event.data)]
     p data
     msg = data['text']
+
     if msg =~ /art me/i
       p "art me triggered"
-      p "returning #{Art.all.sample.image} "
-      {
-        type: 'message',
-        text: Art.all.sample.image,
-        channel: data['channel'],
-      }
+      #remove @@current_art from @@art array
+      if @@art.empty?
+        {
+          type: 'message',
+          text: "Out of art! Enter `@artbot reset_art` to reset the art library.",
+          channel: data['channel'],
+        }
+      else
+        # remove random ID from @@art and update @@current_art to the full Art piec from the DB
+        @@current_art = Art.find_by_id(@@art.delete(@@art.sample))
+        {
+          type: 'message',
+          text: "#{@@current_art.image}",
+          channel: data['channel'],
+        }
+      end
+
     elsif msg =~ /art vandelay/i
       p "art vandeley triggered"
       {
@@ -34,6 +50,7 @@ module SlackBotHooks
         text: "https://www.youtube.com/watch?v=j0Xtsi7Jcec",
         channel: data['channel']
       }
+
     elsif msg =~ /.*weather.*(in|at) (?<location>\w*)\?$/i
       m = data['text'].match(/.*weather.*(in|at) (?<location>\w*)\?$/i)
       {
@@ -41,7 +58,8 @@ module SlackBotHooks
         text: "The weather in #{m[:location]} is nice!",
         channel: data['channel']
       }
-    elsif msg == "hi <@#{$bot_id}>"
+
+    elsif msg == "hi <@#{bot_id}>"
       p "hi @artbot triggered"
       res = "Hi, <@#{data['user']}>."
       p "returning #{res}"
@@ -50,7 +68,8 @@ module SlackBotHooks
         text: "#{res}",
         channel: data['channel']
       }
-    elsif msg == "<@#{$bot_id}> artists"
+
+    elsif msg == "<@#{bot_id}> artists"
       p "@artbot artists triggered"
       res = Artist.all.map {|x| x.name}.join("\n")
       p "returning #{res}"
@@ -59,7 +78,8 @@ module SlackBotHooks
         text: "#{res}",
         channel: data['channel']
       }
-    elsif msg == "<@#{$bot_id}> help"
+
+    elsif msg == "<@#{bot_id}> help"
       p "@artbot help triggered"
       {
         type: 'message',
@@ -86,9 +106,10 @@ module SlackBotEM
     })
 
     rc = JSON.parse(rc.body)
-    $bot_id = rc['self']['id']
+    #capture @@bot_id to use in message
+    @@bot_id = rc['self']['id']
     url = rc['url']
-    p "bot_id = #{$bot_id}"
+    p "bot_id = #{@@bot_id}"
 
     EM.next_tick {
       EM.run do
@@ -116,7 +137,7 @@ module SlackBotEM
   def self.on(signal_type, event=nil)
     case signal_type
       when :open    then open(event)
-      when :message then message(event)
+      when :message then message(event, @@bot_id)
       when :close   then close(event)
     end
   end
