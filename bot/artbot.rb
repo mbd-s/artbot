@@ -30,7 +30,7 @@ module SlackBotHooks
       if @@art.empty?
         {
           type: 'message',
-          text: "Out of art! Enter `@artbot reset_art` to reset the art library.",
+          text: "Out of art! Enter `<@#{bot_id}> refresh` to refresh the art library.",
           channel: data['channel'],
         }
       else
@@ -83,7 +83,7 @@ module SlackBotHooks
       p "@artbot help triggered"
       {
         type: 'message',
-        text: "*For a list of commands, type:*\n`<art me>` to get a random art work \n`hi <nameofthebot>` to get a greeting back\n`@<nameofthebot> artists` to get a list of artists back\n`@<nameofthebot> reset_art` to reset the art library\n`@<nameofthebot>`help to get this list of commands :)",
+        text: "*For a list of commands, type:*\n`<art me>` to get a random art work \n`hi <@#{bot_id}>` to get a greeting back\n`<@#{bot_id}> artists` to get a list of artists back\n`<@#{bot_id}> refresh` to refresh the art library\n`<@#{bot_id}> help` to get this list of commands :)",
         channel: data['channel']
       }
     end
