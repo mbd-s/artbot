@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   resources :arts do
-    resources :questions, except: [:show]
+    resources :questions, except: :show
   end
 end
