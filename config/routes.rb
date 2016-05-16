@@ -4,7 +4,12 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  resources :questions, only: :index
+
   resources :arts do
-    resources :questions, except: :show
+    resources :questions, except: [:show, :index]
   end
+
+
+
 end
