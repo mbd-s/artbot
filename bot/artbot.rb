@@ -12,9 +12,11 @@ module SlackBotHooks
   end
 
   def message(event)
+
     p "Message event triggered"
     data = JSON.parse(event.data)
     # uncomment line below to see full set of incoming data
+    p [:message, JSON.parse(event.data)]
     p data
     msg = data['text']
     if msg =~ /art me/i
@@ -39,12 +41,13 @@ module SlackBotHooks
         text: "The weather in #{m[:location]} is nice!",
         channel: data['channel']
       }
-    elsif msg =~ /hi @artbot/i
+    elsif msg == "hi <@#{$bot_id}>"
       p "hi @artbot triggered"
-      p "returning #{data['user']}"
+      res = "Hi, <@#{data['user']}>."
+      p "returning #{res}"
       {
         type: 'message',
-        text: "Hi, <@#{data['user']}>.",
+        text: "#{res}",
         channel: data['channel']
       }
     elsif msg == "<@#{$bot_id}> artists"
