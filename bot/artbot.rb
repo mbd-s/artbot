@@ -6,10 +6,10 @@
 
 module SlackBotHooks
   # create array from all art id's
-  @art = Art.pluck(:id)
+  @@art = Art.pluck(:id)
 
   # stores last art piece shared
-  @last_art
+  @@current_art = nil
   def open(event)
     p "open event triggered"
     nil
@@ -24,12 +24,22 @@ module SlackBotHooks
 
     if msg =~ /art me/i
       p "art me triggered"
-      p "returning #{Art.all.sample.image} "
-      {
-        type: 'message',
-        text: Art.all.sample.image,
-        channel: data['channel'],
-      }
+      #remove @@current_art from @@art array
+      if @@art.empty?
+        {
+          type: 'message',
+          text: "Out of art! Enter `@artbot reset_art` to reset the art library.",
+          channel: data['channel'],
+        }
+      else
+        # remove random ID from @@art and update @@current_art to the full Art piec from the DB
+        @@current_art = Art.find_by_id(@@art.delete(@@art.sample))
+        {
+          type: 'message',
+          text: "#{@@current_art.image}",
+          channel: data['channel'],
+        }
+      end
 
     elsif msg =~ /art vandelay/i
       p "art vandeley triggered"
@@ -65,7 +75,7 @@ module SlackBotHooks
         text: "#{res}",
         channel: data['channel']
       }
-      
+
     end
 
   end
