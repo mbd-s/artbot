@@ -22,8 +22,9 @@ module SlackBotHooks
     # uncomment line below to see full set of incoming data
     p [:message, JSON.parse(event.data)]
     p data
+    return if data['user'] == bot_id
     msg = data['text']
-
+    
     if msg =~ /art me/i
       p "art me triggered"
       #remove @@current_art from @@art array
@@ -83,7 +84,7 @@ module SlackBotHooks
       p "@artbot help triggered"
       {
         type: 'message',
-        text: "*For a list of commands, type:*\n`<art me>` to get a random art work \n`hi <@#{bot_id}>` to get a greeting back\n`<@#{bot_id}> artists` to get a list of artists back\n`<@#{bot_id}> refresh` to refresh the art library\n`<@#{bot_id}> help` to get this list of commands :)",
+        text: "*For a list of commands, type:*\n`art me` to get a random art work \n`hi <@#{bot_id}>` to get a greeting back\n`<@#{bot_id}> artists` to get a list of artists back\n`<@#{bot_id}> help` to get this list of commands :)",
         channel: data['channel']
       }
     end
