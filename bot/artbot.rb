@@ -5,7 +5,11 @@
 
 
 module SlackBotHooks
-  @art = Art.all
+  # create array from all art id's
+  @art = Art.pluck(:id)
+
+  # stores last art piece shared
+  @last_art
   def open(event)
     p "open event triggered"
     nil
@@ -13,11 +17,11 @@ module SlackBotHooks
 
   def message(event)
     p "Message event triggered"
-    puts @art
     data = JSON.parse(event.data)
     # uncomment line below to see full set of incoming data
     p data
     msg = data['text']
+
     if msg =~ /art me/i
       p "art me triggered"
       p "returning #{Art.all.sample.image} "
@@ -26,6 +30,7 @@ module SlackBotHooks
         text: Art.all.sample.image,
         channel: data['channel'],
       }
+
     elsif msg =~ /art vandelay/i
       p "art vandeley triggered"
       {
@@ -33,6 +38,7 @@ module SlackBotHooks
         text: "https://www.youtube.com/watch?v=j0Xtsi7Jcec",
         channel: data['channel']
       }
+
     elsif msg =~ /.*weather.*(in|at) (?<location>\w*)\?$/i
       m = data['text'].match(/.*weather.*(in|at) (?<location>\w*)\?$/i)
       {
@@ -40,6 +46,7 @@ module SlackBotHooks
         text: "The weather in #{m[:location]} is nice!",
         channel: data['channel']
       }
+
     elsif msg =~ /hi @artbot/i
       p "hi @artbot triggered"
       p "returning #{data['user']}"
@@ -48,6 +55,7 @@ module SlackBotHooks
         text: "Hi, <@#{data['user']}>.",
         channel: data['channel']
       }
+
     elsif msg == "<@#{$bot_id}> artists"
       p "@artbot artists triggered"
       res = Artist.all.map {|x| x.name}.join("\n")
@@ -57,6 +65,7 @@ module SlackBotHooks
         text: "#{res}",
         channel: data['channel']
       }
+      
     end
 
   end
