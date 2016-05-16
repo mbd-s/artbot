@@ -16,9 +16,11 @@ module SlackBotHooks
   end
 
   def message(event)
+
     p "Message event triggered"
     data = JSON.parse(event.data)
     # uncomment line below to see full set of incoming data
+    p [:message, JSON.parse(event.data)]
     p data
     msg = data['text']
 
@@ -57,12 +59,13 @@ module SlackBotHooks
         channel: data['channel']
       }
 
-    elsif msg =~ /hi @artbot/i
+    elsif msg == "hi <@#{$bot_id}>"
       p "hi @artbot triggered"
-      p "returning #{data['user']}"
+      res = "Hi, <@#{data['user']}>."
+      p "returning #{res}"
       {
         type: 'message',
-        text: "Hi, <@#{data['user']}>.",
+        text: "#{res}",
         channel: data['channel']
       }
 
@@ -75,7 +78,17 @@ module SlackBotHooks
         text: "#{res}",
         channel: data['channel']
       }
+<<<<<<< HEAD
 
+=======
+    elsif msg == "<@#{$bot_id}> help"
+      p "@artbot help triggered"
+      {
+        type: 'message',
+        text: "*For a list of commands, type:*\n<art*me> to get a random art work \nhi <nameofthebot> to get a greeting back\n@<nameofthebot> artists to get a list of artists back\n@<name of the bot>help to get this list of commands :)",
+        channel: data['channel']
+      }
+>>>>>>> master
     end
 
   end
