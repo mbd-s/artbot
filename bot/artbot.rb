@@ -5,7 +5,7 @@
 
 
 module SlackBotHooks
-
+  @art = Art.all
   def open(event)
     p "open event triggered"
     nil
@@ -13,6 +13,7 @@ module SlackBotHooks
 
   def message(event)
     p "Message event triggered"
+    puts @art
     data = JSON.parse(event.data)
     # uncomment line below to see full set of incoming data
     p data
