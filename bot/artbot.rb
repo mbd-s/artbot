@@ -56,6 +56,16 @@ module SlackBotHooks
         text: "#{res}",
         channel: data['channel']
       }
+    elsif msg == "<@#{$bot_id}> help"
+      p "@artbot help triggered"
+      {
+        type: 'message',
+        text: "For a list of commands, type:\n&ltart me&gt to get a
+              random art work \nhi @&ltnameofthebot&gt to get a greeting back\n
+              @&ltnameofthebot&gt artists to get a list of artists back\n
+              @&ltname of the bot&gt help to get this list of commands :)",
+        channel: data['channel']
+      }
     end
 
   end
