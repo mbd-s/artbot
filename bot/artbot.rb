@@ -15,7 +15,7 @@ module SlackBotHooks
     nil
   end
 
-  def message(event)
+  def message(event, bot_id)
 
     p "Message event triggered"
     data = JSON.parse(event.data)
@@ -59,7 +59,7 @@ module SlackBotHooks
         channel: data['channel']
       }
 
-    elsif msg == "hi <@#{$bot_id}>"
+    elsif msg == "hi <@#{bot_id}>"
       p "hi @artbot triggered"
       res = "Hi, <@#{data['user']}>."
       p "returning #{res}"
@@ -69,7 +69,7 @@ module SlackBotHooks
         channel: data['channel']
       }
 
-    elsif msg == "<@#{$bot_id}> artists"
+    elsif msg == "<@#{bot_id}> artists"
       p "@artbot artists triggered"
       res = Artist.all.map {|x| x.name}.join("\n")
       p "returning #{res}"
@@ -79,7 +79,7 @@ module SlackBotHooks
         channel: data['channel']
       }
 
-    elsif msg == "<@#{$bot_id}> help"
+    elsif msg == "<@#{bot_id}> help"
       p "@artbot help triggered"
       {
         type: 'message',
@@ -106,9 +106,10 @@ module SlackBotEM
     })
 
     rc = JSON.parse(rc.body)
-    $bot_id = rc['self']['id']
+    #capture @@bot_id to use in message
+    @@bot_id = rc['self']['id']
     url = rc['url']
-    p "bot_id = #{$bot_id}"
+    p "bot_id = #{@@bot_id}"
 
     EM.next_tick {
       EM.run do
@@ -136,7 +137,7 @@ module SlackBotEM
   def self.on(signal_type, event=nil)
     case signal_type
       when :open    then open(event)
-      when :message then message(event)
+      when :message then message(event, @@bot_id)
       when :close   then close(event)
     end
   end
