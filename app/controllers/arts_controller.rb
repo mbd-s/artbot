@@ -1,5 +1,5 @@
 class ArtsController < ApplicationController
-  before_action :authenticate_admin!, :set_art
+  before_action :authenticate_admin!, :except => [:show], :set_art
 
   def index
     @arts = Art.all
