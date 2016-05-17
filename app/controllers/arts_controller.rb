@@ -1,5 +1,5 @@
 class ArtsController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :authenticate_admin!, :set_art
 
   def index
     @arts = Art.all
@@ -19,36 +19,32 @@ class ArtsController < ApplicationController
   end
 
   def show
-    @art = target_art
     render :show
   end
 
   def edit
-    @art = target_art
     render :edit
   end
 
   def update
-    art = target_art
-
-
-    if art.update(art_params)
-      redirect_to art_path(art)
+    if @art.update(art_params)
+      redirect_to art_path(@art)
     end
   end
 
   def destroy
-    art = target_art
 
-    art.destroy
+    @art.destroy
 
     redirect_to arts_path
   end
 
     private
-      def target_art
-        Art.find(params[:id])
+    
+      def set_art
+        @art = Art.find(params[:id])
       end
+      
       def art_params
         params.require(:art).permit(:title, :artist, :image, :year, :century, :medium)
       end
