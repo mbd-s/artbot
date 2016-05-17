@@ -108,9 +108,9 @@ module SlackBotEM
 
     rc = JSON.parse(rc.body)
     #capture @@bot_id to use in message
-    # @@bot_id = rc['self']['id']
-    # url = rc['url']
-    # p "bot_id = #{@@bot_id}"
+    @@bot_id = rc['self']['id']
+    url = rc['url']
+    p "bot_id = #{@@bot_id}"
 
     EM.next_tick {
       EM.run do
