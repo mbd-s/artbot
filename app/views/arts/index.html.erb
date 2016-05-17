@@ -9,10 +9,13 @@
 
         </div>
         <div>
-         <strong>Title:</strong> <%=link_to art.title, art_path(art) %>
+         <strong>Title:</strong> &ldquo;<%=link_to art.title, art_path(art) %>&rdquo;
         </div>
         <div>
          <strong>Artist:</strong> <%= art.artist.name %>
+        </div>
+        <div>
+         <strong>Nationality:</strong> <%= art.artist.nationality %>
         </div>
         <div>
          <strong>Year:</strong> <%= art.year %><br>
