@@ -28,25 +28,22 @@
             <li><a href="/arts">Artworks</a></li>
             <li>
               <% if current_admin %>
-                <li><%= link_to current_admin.username, admin_path(current_admin) %></li>
-                <li><%= link_to "Log Out", destroy_admin_session_path, method: :delete %></li>
-              <% else %>
-                </li>
-                  <li>
-                  <li><%= link_to "Sign Up", new_admin_registration_path %></li>
-                  <li><%= link_to "Log In", new_admin_session_path %></li>
-                </li>
-              <% end %>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <%= current_admin.username %>
+                  <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
+                  <li><%= link_to "Edit Profile", edit_admin_registration_path %></li>
                   <li><a href="#">Another action</a></li>
                   <li><a href="#">Something else here</a></li>
                   <li role="separator" class="divider"></li>
-                  <li><a href="#">Separated link</a></li>
+                  <li><%= link_to "Log Out", destroy_admin_session_path, method: :delete %></li>
                 </ul>
               </li>
+              <% else %>
+                <li><%= link_to "Sign Up", new_admin_registration_path %></li>
+                <li><%= link_to "Log In", new_admin_session_path %></li>
+              <% end %>
 
           </ul>
         </div><!-- /.navbar-collapse -->
