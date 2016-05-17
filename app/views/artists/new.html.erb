@@ -1,0 +1,23 @@
+<h2> New Artist: </h2>
+
+<%= form_for @artist do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :birth %>
+    <%= f.text_field :birth %>
+  </div>
+  <div>
+    <%= f.label :death %>
+    <%= f.text_field :death %>
+  </div>
+  <div>
+    <%= f.label :nationality %>
+    <%= f.text_field :nationality %>
+  </div>
+  <div>
+    <%= f.submit "Add Artist" %>
+  </div>
+<% end %>
