@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root to: "arts#index"
+  root to: "welcome#index"
+
   devise_for :admins
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
     resources :questions, except: [:show, :index]
   end
 
+  get "/welcome", to: "welcome#index"
 
 
 end
