@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   get "/questions", to: "questions#index"
 
-  resources :artist, except: [:show, :index]
+  resources :artists, except: [:show, :index]
 
   resources :arts do
     resources :questions, except: [:show, :index]
