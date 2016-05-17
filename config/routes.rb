@@ -12,6 +12,4 @@ Rails.application.routes.draw do
     resources :questions, except: [:show, :index]
   end
 
-
-
 end
