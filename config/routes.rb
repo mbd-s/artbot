@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :admins
 
-  resources :questions, only: :index
+  get "/questions", to: "questions#index"
 
   resources :arts do
     resources :questions, except: [:show, :index]
