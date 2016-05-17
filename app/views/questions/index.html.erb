@@ -1,1 +1,9 @@
-<h3>ALL QUESTIONS</h3>
+<% @questions.each do |question| %>
+  <div>
+    <strong>Artwork: </strong> <%= @art.title %><br>
+    <strong>Artwork: </strong> <%= @art.artist.name %><br>
+    <strong>Question: </strong> <%= question.text %><br>
+    <strong>Answer: </strong> <%= question.answer %><br>
+  </div>
+  <br>
+<% end %>

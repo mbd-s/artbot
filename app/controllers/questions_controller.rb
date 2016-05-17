@@ -1,7 +1,9 @@
 class QuestionsController < ApplicationController
 
   def index
+    @art = Art.find(params[:art_id])
     @questions = Question.all
+    render :index
   end
 
   def new
@@ -20,6 +22,9 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+    @art = Art.find(params[:art_id])
+    @question = Question.find(params[:id])
+    render :edit
   end
 
   def update
