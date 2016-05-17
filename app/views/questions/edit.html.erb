@@ -1,0 +1,18 @@
+<%= form_for [@question.art, @question], url: art_question_path do |f| %>
+  <div>
+    <%= f.label :text, "Question" %>
+  </div>
+  <div>
+    <%= f.text_area :text %>
+  </div>
+  <div>
+    <%= f.label :answer %>
+  </div>
+  <div>
+    <%= f.text_area :answer %>
+  </div>
+  <div>
+    <%= f.submit "Save edits" %>
+
+  </div>
+<% end %>

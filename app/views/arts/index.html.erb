@@ -9,16 +9,16 @@
 
         </div>
         <div>
-         Title: <%=link_to art.title, art_path(art) %>
+         <strong>Title:</strong> <%=link_to art.title, art_path(art) %>
         </div>
         <div>
-         Year: <%= art.year %><br>
+         <strong>Year:</strong> <%= art.year %><br>
         </div>
         <div>
-         Century: <%= art.century %><br>
+         <strong>Era:</strong> <%= art.century %> century<br>
         </div>
         <div>
-         Medium: <%= art.medium %><br>
+         <strong>Medium:</strong> <%= art.medium %><br>
         </div>
       <br>
       <% end %>
