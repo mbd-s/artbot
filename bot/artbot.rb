@@ -108,6 +108,11 @@ module SlackBotEM
 
     rc = JSON.parse(rc.body)
     #capture @@bot_id to use in message
+    if rc && !rc['self']
+      p "FAILED TO CONNECT TO SLACK BOT"
+      return nil
+    end
+
     @@bot_id = rc['self']['id']
     url = rc['url']
     p "bot_id = #{@@bot_id}"
