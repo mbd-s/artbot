@@ -24,19 +24,20 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li><a href="/arts">Artworks</a></li>
-          </ul>
+
           <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav">
+              <li><a href="/arts">Artworks</a></li>
+            </ul>
             <li>
                 <% if current_admin %>
                   <li><%= link_to "Profile", admin_path(current_admin) %></li>
-                  <li><%= link_to "Log Out", logout_path %></li>
+                  <li><%= link_to "Log Out", destroy_admin_session_path, method: :delete %></li>
                 <% else %>
             </li>
             <li>
-                <li><%= link_to "Sign Up", new_admin_path %></li>
-                <li><%= link_to "Log In", login_path %></li>
+                <li><%= link_to "Sign Up", new_admin_registration_path %></li>
+                <li><%= link_to "Log In", new_admin_session_path %></li>
             </li>
             <% end %>
           </ul>
