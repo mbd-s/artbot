@@ -1,9 +1,8 @@
 <% @questions.each do |question| %>
   <div>
-    <strong>Artwork: </strong> <%= @art.title %><br>
-    <strong>Artwork: </strong> <%= @art.artist.name %><br>
     <strong>Question: </strong> <%= question.text %><br>
     <strong>Answer: </strong> <%= question.answer %><br>
+    <%= link_to "Edit question", edit_art_question_path({:art_id => question.art, :id => question.id}), :class => "btn btn-info" %>
   </div>
   <br>
 <% end %>

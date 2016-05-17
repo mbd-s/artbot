@@ -1,13 +1,14 @@
 class QuestionsController < ApplicationController
+before_action :authenticate_admin!
 
   def index
-    @art = Art.find(params[:art_id])
     @questions = Question.all
     render :index
   end
 
   def new
     @question = Question.new
+    render :new
   end
 
   def create
@@ -23,7 +24,7 @@ class QuestionsController < ApplicationController
 
   def edit
     @art = Art.find(params[:art_id])
-    @question = Question.find(params[:id])
+    question = Question.find(params[:id])
     render :edit
   end
 
@@ -31,6 +32,9 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
+    question = Question.find(params[:id])
+    question.destroy
+    redirect_to question_path
   end
 
   private
