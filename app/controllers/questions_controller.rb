@@ -23,6 +23,7 @@ before_action :authenticate_admin!
   end
 
   def edit
+    set_question
     @art = Art.find(params[:art_id])
     question = Question.find(params[:id])
     render :edit
@@ -44,7 +45,7 @@ before_action :authenticate_admin!
   end
 
   def set_question
-    @question = Question.find(params[:question_id])
+    @question = Question.find(params[:id])
   end
 
   def question_params

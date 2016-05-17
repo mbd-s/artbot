@@ -1,4 +1,4 @@
-<%= form_for [@art, @question], url: edit_art_question_path do |f| %>
+<%= form_for [@question.art, @question], url: edit_art_question_path do |f| %>
   <div>
     <%= f.label :text, "Question" %>
   </div>
@@ -13,6 +13,6 @@
   </div>
   <div>
     <%= f.submit "Save edits" %>
-    
+
   </div>
 <% end %>
