@@ -8,10 +8,26 @@
       <%= f.label :title %>
       <%= f.text_field :title %>
     </div>
-    <div>
-      <%= f.label :artist %>
-      <%= f.text_field :artist %>
-    </div>
+    <%= f.fields_for :artist do |a| %>
+       <div class="artist_attrs">
+         <div>
+           <%= a.label :name %>
+           <%= a.text_field :name %>
+         </div>
+         <div>
+           <%= a.label :birth %>
+           <%= a.text_field :birth %>
+         </div>
+         <div>
+           <%= a.label :death %>
+           <%= a.text_field :death %>
+         </div>
+         <div>
+           <%= a.label :nationality %>
+           <%= a.text_field :nationality %>
+         </div>
+       </div>
+    <% end %>
     <div>
       <%= f.label :year %>
       <%= f.text_field :year %>

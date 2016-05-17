@@ -10,6 +10,7 @@ class ArtsController < ApplicationController
   end
 
   def create
+    binding.pry
     @art = Art.new(art_params)
     if @art.save
       redirect_to @art
@@ -48,6 +49,10 @@ class ArtsController < ApplicationController
 
   private
     def art_params
-      params.require(:art).permit(:title, :artist, :image, :year, :century, :medium)
+      params.require(:art).permit(:title, :image, :year, :century, :medium)
+    end
+
+    def artist_params
+      params.require(:art).require(:artist).permit(:name, :birth, :death, :nationality)
     end
 end
