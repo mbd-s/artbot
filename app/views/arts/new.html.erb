@@ -9,8 +9,10 @@
       <%= f.text_field :title %>
     </div>
     <div>
-      <%= f.label :artist %>
-      <%= f.text_field :artist %>
+          <%= f.label :artist_id %>
+           <select name="art[artist_id]">
+           <%= options_from_collection_for_select(Artist.all, :id, :name) %>
+         </select>
     </div>
     <div>
       <%= f.label :year %>
