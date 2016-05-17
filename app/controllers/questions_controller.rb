@@ -1,5 +1,4 @@
 class QuestionsController < ApplicationController
-  before_action :set_art
 
   def index
     @questions = Question.all
@@ -10,7 +9,9 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.new(question_params)
+    @art = Art.find(params[:art_id])
+    @question = Question.create(question_params)
+    set_art.questions << @question
     if @question.save
       redirect_to art_path(@art)
     else
@@ -38,7 +39,7 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).allow(:text, :answer, :art_id)
+    params.require(:question).permit(:text, :answer, :art_id)
   end
 
 end

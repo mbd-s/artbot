@@ -1,17 +1,17 @@
-<%= form_for @question do |f| %>
-    <div>
-      <%= f.label :text, "Question" %>
-    </div>
-    <div>
-      <%= f.text_area :text %>
-    </div>
-    <div>
-      <%= f.label :answer %>
-    </div>
-    <div>
-      <%= f.text_area :answer %>
-    </div>
-    <div>
-      <%= f.submit "Save new question" %>
-    </div>
-  <% end %>
+<%= form_for [@art, @question], url: art_questions_path do |f| %>
+  <div>
+    <%= f.label :text, "Question" %>
+  </div>
+  <div>
+    <%= f.text_area :text %>
+  </div>
+  <div>
+    <%= f.label :answer %>
+  </div>
+  <div>
+    <%= f.text_area :answer %>
+  </div>
+  <div>
+    <%= f.submit "Save new question" %>
+  </div>
+<% end %>
