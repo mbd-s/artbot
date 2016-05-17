@@ -24,12 +24,16 @@ before_action :authenticate_admin!
 
   def edit
     set_question
-    @art = Art.find(params[:art_id])
-    question = Question.find(params[:id])
     render :edit
   end
 
   def update
+    set_question
+    if @question.update(question_params)
+      redirect_to questions_path
+    else
+      render :edit
+    end
   end
 
   def destroy
