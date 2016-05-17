@@ -12,9 +12,9 @@
     <strong>Name: </strong> <%= @art.title %><br>
     <strong>Artist: </strong> <%= @art.artist.name %><br>
     <strong>Year: </strong> <%= @art.year %><br>
-    <strong>Century: </strong> <%= @art.century %><br>
+    <strong>Era: </strong> <%= @art.century %> century<br>
     <strong>Medium: </strong> <%= @art.medium %><br>
-    
+
     <%= link_to "Edit Artwork", edit_art_path, :class => "btn btn-info" %>
 
     <%= button_to "Delete", @art, method: :delete, :class => "btn btn-danger" %>
