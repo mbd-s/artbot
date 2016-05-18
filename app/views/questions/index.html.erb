@@ -5,7 +5,9 @@
     </div>
     <strong>Question: </strong> <%= question.text %><br>
     <strong>Answer: </strong> <%= question.answer %><br>
+    <br>
     <%= link_to "Edit question", edit_art_question_path({:art_id => question.art, :id => question.id}), :class => "btn btn-info" %>
   </div>
+  <br>
   <br>
 <% end %>
