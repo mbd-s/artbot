@@ -10,6 +10,10 @@ module SlackBotHooks
 
   # stores last art piece shared
   @@current_art = nil
+
+  # stores current answer to quiz (nil if quiz isnt active)
+  @@answer = nil
+  
   def open(event)
     p "open event triggered"
     nil
@@ -113,7 +117,7 @@ module SlackBotEM
       p "FAILED TO CONNECT TO SLACK BOT"
       return nil
     end
-    
+
     @@bot_id = rc['self']['id']
     url = rc['url']
     p "bot_id = #{@@bot_id}"
