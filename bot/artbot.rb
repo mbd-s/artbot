@@ -49,7 +49,7 @@ module SlackBotHooks
       p "more info triggered"
       {
         type: 'message',
-        text: "The #{@@current_art.medium} ​*#{@@current_art.title}*​ was created in ​*#{@@current_art.year}*​ by the #{@@current_art.artist.nationality} artist ​*#{@@current_art.artist.name}*​.",
+        text: "The #{@@current_art.medium} ​*#{@@current_art.title}*​ was created in ​*#{@@current_art.year}*​ by the #{@@current_art.artist.nationality} artist ​*#{@art.artist.name}*​.",
         channel: data['channel']
       }
 
@@ -128,7 +128,7 @@ module SlackBotHooks
       p "@artbot help triggered"
       {
         type: 'message',
-        text: "*Here's what you can tell me to do:*\n`art me` I'll send you a random piece of art.\n`quiz me` I'll ask you questions about the art.\n`hi <@#{bot_id}>` I'll greet you back. (I'm polite.)\n`<@#{bot_id}> artists` I'll give you a list of all the artists currently in my gallery.\n`<@#{bot_id}> help` I'll give you this list of commands.",
+        text: "*Here's what you can tell me to do:*\n`art me` I'll send you a random piece of art.\n`<@#{bot_id}> more info` I'll give you more information about the last artwork.\n`quiz me` I'll ask you questions about the art.\n`hi <@#{bot_id}>` I'll greet you back. (I'm polite.)\n`<@#{bot_id}> artists` I'll give you a list of all the artists currently in my gallery.\n`<@#{bot_id}> help` I'll resend this list of commands.",
         channel: data['channel']
       }
     end
