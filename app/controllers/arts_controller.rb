@@ -12,8 +12,10 @@ class ArtsController < ApplicationController
   def create
     @art = Art.new(art_params)
     if @art.save
+      flash[:notice] = "New Art Created!"
       redirect_to @art
     else
+      flash[:error] = @art.errors.full_messages.join(", \n")
       render :new
     end
   end
@@ -30,7 +32,6 @@ class ArtsController < ApplicationController
 
   def update
     art = Art.find(params[:id])
-
 
     if art.update(art_params)
       redirect_to art_path(art)
