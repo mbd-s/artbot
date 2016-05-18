@@ -15,9 +15,15 @@
     </div>
     <div class="col-md-2">
       The <%= @art.medium %> <strong>&ldquo;<%= @art.title %>&rdquo;</strong> was created in <strong><%= @art.year %></strong> by the <%= @art.artist.nationality %> artist <strong><%= @art.artist.name %></strong>.
-      <%= link_to "Edit Artwork", edit_art_path, :class => "btn btn-info" %>
-      <%= button_to "Delete", @art, method: :delete, :class => "btn btn-danger" %>
-      <%= link_to "Add Question", new_art_question_path(@art, @question), :class => "btn btn-default" %>
+      <%= link_to edit_art_path, :class => "btn btn-primary" do%>
+        <i class="glyphicon glyphicon-pencil"></i>
+      <% end %>
+      <%= button_to @art, method: :delete, :class => "btn btn-danger" do %>
+        <span class="glyphicon glyphicon-trash"></span>
+      <% end %>
+      <%= link_to new_art_question_path(@art, @question), :class => "btn btn-default" do%>
+        <i class="glyphicon glyphicon-plus"></i>
+      <% end %>
     </div>
   </div>
 <div class ="container">
