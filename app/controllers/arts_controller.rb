@@ -31,7 +31,6 @@ class ArtsController < ApplicationController
   def update
     art = Art.find(params[:id])
 
-
     if art.update(art_params)
       redirect_to art_path(art)
     end
