@@ -16,3 +16,7 @@ RSpec.describe Admin, type: :model do
      confirmed_at { Time.now }
    end
  end
+
+ describe Admin do
+   it { should validate_presence_of(:email) }
+ end
