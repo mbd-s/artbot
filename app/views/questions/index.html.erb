@@ -1,8 +1,11 @@
+<br>
+<br>
 <% @questions.each do |question| %>
   <div>
     <div>
       <%= image_tag question.art.image, :class => "art-image-show" %>
     </div>
+    <br>
     <strong>Question: </strong> <%= question.text %><br>
     <strong>Answer: </strong> <%= question.answer %><br>
     <br>
