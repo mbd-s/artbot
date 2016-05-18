@@ -6,7 +6,7 @@
 
 module SlackBotHooks
   # create array from all art id's
-  @@art = Art.pluck(:id)
+  @@art = []
 
   # stores last art piece shared
   @@current_art = nil
@@ -29,23 +29,22 @@ module SlackBotHooks
     msg = data['text']
 
     if msg =~ /art me/i
-      p "art me triggered"
-      #remove @@current_art from @@art array
+      p "art me triggered [#{@@art.count} images remaining]"
+      # reset art list if empty
       if @@art.empty?
-        {
-          type: 'message',
-          text: "You've seen all the art! Enter `<@#{bot_id}> refresh` to refresh the gallery.",
-          channel: data['channel'],
-        }
-      else
-        # remove random ID from @@art and update @@current_art to the full Art piec from the DB
-        @@current_art = Art.find_by_id(@@art.delete(@@art.sample))
-        {
-          type: 'message',
-          text: "https://slack-artbot.herokuapp.com/arts/" + "#{@@current_art.id}",
-          channel: data['channel'],
-        }
+        @@art = Art.pluck(:id)
+        p "   resetting @@art"
       end
+      p "   [#{@@art.count} images remaining]"
+
+      # remove random ID from @@art and update @@current_art to the full Art piec from the DB
+      @@current_art = Art.find_by_id(@@art.delete(@@art.sample))
+
+      {
+        type: 'message',
+        text: "https://slack-artbot.herokuapp.com/arts/#{@@current_art.id}",
+        channel: data['channel'],
+      }
 
     # QUIZ ME INITIALIZE
     elsif (msg =~ /quiz me/i)
