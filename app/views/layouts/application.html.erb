@@ -2,10 +2,15 @@
 <html>
 <head>
   <title>Artbot</title>
-  
-  <% if content_for? :og_meta %>
-    <%= yield :og_meta %>
+
+  <% if content_for? :meta_og %>
+    <%= yield :meta_og %>
   <% end %>
+
+  <% if content_for? :meta_twitter %>
+    <%= yield :meta_twitter %>
+  <% end %>
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>

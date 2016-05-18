@@ -1,44 +1,46 @@
-<% content_for :og_meta do %>
+<% content_for :meta_og do %>
   <meta property="og:title" content="'<%= @art.title %>' by <%= @art.artist.name %> (<%= @art.artist.birth %>–<%= @art.artist.death %>)">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://slack-artbot.herokuapp.com<%= art_path(@art) %>">
   <meta property="og:image" content="<%= @art.image %>">
 <% end %>
 
+<% content_for :meta_twitter do %>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@slackartbot">
+<meta name="twitter:title" content="'<%= @art.title %>' by <%= @art.artist.name %> (<%= @art.artist.birth %>–<%= @art.artist.death %>)">
+<meta name="twitter:description" content="The <%= @art.medium %> &ldquo;<%= @art.title %>&rdquo; was created in <%= @art.year %> by the <%= @art.artist.nationality %> artist <%= @art.artist.name %>.">
+<meta name="twitter:image" content="<%= @art.image %>">
+<% end %>
+
   <div >
+
+
     <span>
       <h3>&ldquo;<%= @art.title %>,&rdquo; by <%= @art.artist.name %> (<%= @art.artist.birth %>–<%= @art.artist.death %>)</h3>
     </span>
-    <% if current_admin %>
-      <div class="icon_group">
-        <%= link_to edit_art_path, :class => "btn btn-default" do%>
-          <span class="glyphicon glyphicon-pencil"></span>
-        <% end %>
-        <%= link_to @art, method: :delete, :class => "btn btn-default" do %>
-          <span class="glyphicon glyphicon-trash"></span>
-        <% end %>
-        <%= link_to new_art_question_path(@art, @question), :class => "btn btn-default" do%>
-          <span class="glyphicon glyphicon-plus"></span>
-          <span class="glyphicon glyphicon-question-sign"></span>
-        <% end %>
-      </div>
-    <% end %>
 
+    <div class="icon_group">
+      <%= link_to edit_art_path, :class => "btn btn-default" do%>
+        <span class="glyphicon glyphicon-pencil"></span>
+      <% end %>
+      <%= link_to @art, method: :delete, :class => "btn btn-default" do %>
+        <span class="glyphicon glyphicon-trash"></span>
+      <% end %>
+      <%= link_to new_art_question_path(@art, @question), :class => "btn btn-default" do%>
+        <span class="glyphicon glyphicon-plus"></span>
+        <span class="glyphicon glyphicon-question-sign"></span>
+
+      <% end %>
+    </div>
   </div>
-
   <div class="row">
     <div class="col-md-12">
       <%= image_tag @art.image %>
     </div>
   </div>
-  <% if current_admin %>
-    <% @art.questions.each do |question| %>
-      <strong>Question: </strong><%= question.text %>
-      <strong>Answer: </strong><%= question.answer %>
-    <% end %>
-  <% end %>
 
   <div class="twitter-button">
-    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://https://slack-artbot.herokuapp.com/" data-via="maanna" data-size="large" data-hashtags="artbot,slack,generalassembly-sf,wdi28,">Tweet</a>
+    <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://https://slack-artbot.herokuapp.com/" data-text="I found this from Artbot" data-size="large">Tweet</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
   </div>
