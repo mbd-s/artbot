@@ -27,7 +27,7 @@ module SlackBotHooks
     p data
     return if data['user'] == bot_id
     msg = data['text']
-    
+
     if msg =~ /art me/i
       p "art me triggered"
       #remove @@current_art from @@art array
@@ -68,6 +68,7 @@ module SlackBotHooks
         }
       end
 
+    # QUIZ ME **CORRECT ANSWER GIVEN**
     elsif msg && @@answer && msg.include?(@@answer)
       p "quiz correctly answered!"
       {
