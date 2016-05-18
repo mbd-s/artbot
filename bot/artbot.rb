@@ -10,13 +10,16 @@ module SlackBotHooks
 
   # stores last art piece shared
   @@current_art = nil
+
+  # stores current answer to quiz (nil if quiz isnt active)
+  @@answer = nil
+
   def open(event)
     p "open event triggered"
     nil
   end
 
   def message(event, bot_id)
-
     p "Message event triggered"
     data = JSON.parse(event.data)
     # uncomment line below to see full set of incoming data
@@ -43,6 +46,49 @@ module SlackBotHooks
           channel: data['channel'],
         }
       end
+
+    # QUIZ ME INITIALIZE
+    elsif (msg =~ /quiz me/i)
+      p "quiz me triggered"
+
+      if !@@answer #no active quiz
+        q = Question.all.sample
+        @@answer = q.answer
+        {
+          type: 'message',
+          text: "#{q.art.image}\n```QUESTION\n#{q.text}```",
+          channel: data['channel']
+        }
+      else #quiz is active
+        p "quiz already active"
+        {
+          type: 'message',
+          text: "You are already in the middle of a quiz! Please respond with the answer or `<@#{bot_id}> answer` to finish this quiz.",
+          channel: data['channel']
+        }
+      end
+
+    # QUIZ ME **CORRECT ANSWER GIVEN**
+    elsif msg && @@answer && msg.include?(@@answer)
+      p "quiz correctly answered!"
+      answer = @@answer
+      @@answer = nil
+      {
+        type: 'message',
+        text: "Correct, <@#{data['user']}>\nThe answer is: `#{answer}`",
+        channel: data['channel']
+      }
+
+    # QUIZ ME TERMINATE **USER ASKS FOR ANSWER**
+  elsif msg == "<@#{bot_id}> answer"
+      p "quiz me terminate(answer request) triggered"
+      answer = @@answer
+      @@answer = nil
+      {
+        type: 'message',
+        text: "```QUIZ OVER!\nANSWER: #{answer}```",
+        channel: data['channel']
+      }
 
     elsif msg =~ /art vandelay/i
       p "art vandeley triggered"
@@ -113,7 +159,7 @@ module SlackBotEM
       p "FAILED TO CONNECT TO SLACK BOT"
       return nil
     end
-    
+
     @@bot_id = rc['self']['id']
     url = rc['url']
     p "bot_id = #{@@bot_id}"
