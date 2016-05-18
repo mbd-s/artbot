@@ -1,5 +1,7 @@
 class QuestionsController < ApplicationController
 before_action :authenticate_admin!
+before_action :set_art, :only => [:new, :create]
+before_action :set_question, :except => [:index, :new, :create]
 
   def index
     @questions = Question.all
@@ -7,15 +9,13 @@ before_action :authenticate_admin!
   end
 
   def new
-    @art = Art.find(params[:art_id])
     @question = Question.new
     render :new
   end
 
   def create
-    @art = Art.find(params[:art_id])
     @question = Question.create(question_params)
-    set_art.questions << @question
+    @art.questions << @question
     if @question.save
       redirect_to art_path(@art)
     else
@@ -24,12 +24,10 @@ before_action :authenticate_admin!
   end
 
   def edit
-    set_question
     render :edit
   end
 
   def update
-    set_question
     if @question.update(question_params)
       redirect_to questions_path
     else
@@ -38,8 +36,7 @@ before_action :authenticate_admin!
   end
 
   def destroy
-    question = Question.find(params[:id])
-    question.destroy
+    @question.destroy
     redirect_to question_path
   end
 
