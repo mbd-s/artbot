@@ -82,6 +82,5 @@ RSpec.describe ArtsController, type: :controller do
       it "cannot delete art from the database"
     end
   end
-
-  end
+  
 end
