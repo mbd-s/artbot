@@ -5,26 +5,29 @@
   <meta property="og:image" content="<%= @art.image %>">
 <% end %>
 
-<div class ="container-fluid">
-  <div class="row">
-    <h3>&ldquo;<%= @art.title %>,&rdquo; by <%= @art.artist.name %> (<%= @art.artist.birth %>–<%= @art.artist.death %>)</h3>
+  <div >
+
+
+    <span>
+      <h3>&ldquo;<%= @art.title %>,&rdquo; by <%= @art.artist.name %> (<%= @art.artist.birth %>–<%= @art.artist.death %>)</h3>
+    </span>
+
+    <div class="icon_group">
+      <%= link_to edit_art_path, :class => "btn btn-default" do%>
+        <span class="glyphicon glyphicon-pencil"></span>
+      <% end %>
+      <%= link_to @art, method: :delete, :class => "btn btn-default" do %>
+        <span class="glyphicon glyphicon-trash"></span>
+      <% end %>
+      <%= link_to new_art_question_path(@art, @question), :class => "btn btn-default" do%>
+        <span class="glyphicon glyphicon-plus"></span>
+        <span class="glyphicon glyphicon-question-sign"></span>
+
+      <% end %>
+    </div>
   </div>
-  <div class="row show_image">
+  <div class="row">
     <div class="col-md-12">
       <%= image_tag @art.image, class: "show_image" %>
     </div>
   </div>
-  <div class="row icons">
-    <div class="col-md-2">
-      <%= link_to edit_art_path, :class => "btn btn-primary" do%>
-        <i class="glyphicon glyphicon-pencil"></i>
-      <% end %>
-      <%= button_to @art, method: :delete, :class => "btn btn-danger" do %>
-        <span class="glyphicon glyphicon-trash"></span>
-      <% end %>
-      <%= link_to new_art_question_path(@art, @question), :class => "btn btn-default" do%>
-        <i class="glyphicon glyphicon-plus"></i>
-      <% end %>
-    </div>
-  </div>
-<div class ="container">
