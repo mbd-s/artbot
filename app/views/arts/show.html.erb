@@ -1,3 +1,10 @@
+<% content_for :og_meta do %>
+  <meta property="og:title" content="'<%= @art.title %>' by <%= @art.artist.name %> (<%= @art.artist.birth %>–<%= @art.artist.death %>)">
+  <meta property="og:type" content="image/jpeg">
+  <meta property="og:url" content="https://slack-artbot.herokuapp.com<%= art_path(@art) %>">
+  <meta property="og:image" content="<%= @art.image %>">
+<% end %>
+
 <div class ="container">
 <div class="row">
   <h2>Art Up Close</h2>
