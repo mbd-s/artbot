@@ -1,4 +1,11 @@
 <h2>Add New Artwork</h2>
+
+<% if flash[:error] %>
+  <div class="alert alert-warning" role="alert">
+    <%= flash[:error] %>
+  </div>
+<% end %>
+
 <%= form_for @art do |f| %>
     <div>
       <%= f.label :image %>
