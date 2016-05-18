@@ -29,13 +29,11 @@ module SlackBotHooks
     msg = data['text']
 
     if msg =~ /art me/i
-      p "art me triggered [#{@@art.count} images remaining]"
+      p "art me triggered"
       # reset art list if empty
       if @@art.empty?
         @@art = Art.pluck(:id)
-        p "   resetting @@art"
       end
-      p "   [#{@@art.count} images remaining]"
 
       # remove random ID from @@art and update @@current_art to the full Art piec from the DB
       @@current_art = Art.find_by_id(@@art.delete(@@art.sample))
