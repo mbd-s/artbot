@@ -1,7 +1,9 @@
 class Artist < ActiveRecord::Base
   has_many :arts
 
-  # callback to delete dependant questions first
+  validates :name, :birth, :death, :nationality, presence: true
+  
+  # callback to delete dependent questions first
   before_destroy :delete_arts
 
   def delete_arts

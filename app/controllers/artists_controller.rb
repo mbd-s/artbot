@@ -7,8 +7,10 @@ class ArtistsController < ApplicationController
   def create
     @artist = Artist.new(artist_params)
     if @artist.save
+      flash[:success] = "New Artist Added"
       redirect_to arts_path
     else
+      flash[:error] = @artist.errors.full_messages.to_sentence
       render :new
     end
   end
