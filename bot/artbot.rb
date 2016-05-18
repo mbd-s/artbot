@@ -42,7 +42,7 @@ module SlackBotHooks
         @@current_art = Art.find_by_id(@@art.delete(@@art.sample))
         {
           type: 'message',
-          text: "#{@@current_art.image}",
+          text: "https://slack-artbot.herokuapp.com/arts/" + "#{@@current_art.id}",
           channel: data['channel'],
         }
       end
