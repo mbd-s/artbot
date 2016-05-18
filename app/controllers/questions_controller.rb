@@ -42,7 +42,7 @@ before_action :set_question, :except => [:index, :new, :create]
   def destroy
     @question.destroy
       flash[:success] = "Question Deleted"
-    redirect_to question_path
+    redirect_to questions_path
   end
 
   private
