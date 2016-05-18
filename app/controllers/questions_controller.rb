@@ -7,6 +7,7 @@ before_action :authenticate_admin!
   end
 
   def new
+    @art = Art.find(params[:art_id])
     @question = Question.new
     render :new
   end
