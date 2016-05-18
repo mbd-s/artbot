@@ -13,7 +13,7 @@ module SlackBotHooks
 
   # stores current answer to quiz (nil if quiz isnt active)
   @@answer = nil
-  
+
   def open(event)
     p "open event triggered"
     nil
@@ -45,6 +45,27 @@ module SlackBotHooks
           type: 'message',
           text: "#{@@current_art.image}",
           channel: data['channel'],
+        }
+      end
+
+    # QUIZ ME INITIALIZE
+  elsif (msg =~ /quiz me/i)
+      p "quiz me triggered"
+
+      if !@@answer #no active quiz
+        q = Question.all.sample
+        @@answer = q.answer
+        {
+          type: 'message',
+          text: "```QUESTION\n#{q.text}```",
+          channel: data['channel']
+        }
+      else #quiz is active
+        p "quiz already active"
+        {
+          type: 'message',
+          text: "You are already in the middle of a quiz! Please respond with the answer or `<@#{bot_id}> answer` to finish this quiz.",
+          channel: data['channel']
         }
       end
 
