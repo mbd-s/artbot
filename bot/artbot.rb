@@ -75,7 +75,7 @@ module SlackBotHooks
       @@answer = nil
       {
         type: 'message',
-        text: "Correct, <@#{data['user']}>\nThe answer is: `#{answer}`",
+        text: "Correct, <@#{data['user']}>!\nThe answer was: `#{answer}`.",
         channel: data['channel']
       }
 
@@ -91,7 +91,7 @@ module SlackBotHooks
       }
 
     elsif msg =~ /art vandelay/i
-      p "art vandeley triggered"
+      p "art vandelay triggered"
       {
         type: 'message',
         text: "https://www.youtube.com/watch?v=j0Xtsi7Jcec",
@@ -100,7 +100,7 @@ module SlackBotHooks
 
     elsif msg == "hi <@#{bot_id}>"
       p "hi @artbot triggered"
-      res = "Hi, <@#{data['user']}>"
+      res = "Hi, <@#{data['user']}>!"
       p "returning #{res}"
       {
         type: 'message',
@@ -114,7 +114,7 @@ module SlackBotHooks
       p "returning #{res}"
       {
         type: 'message',
-        text: "*These are all the artists I know right now:*\n#{res}",
+        text: "*These are all the artists I know about right now:*\n#{res}",
         channel: data['channel']
       }
 
@@ -122,7 +122,7 @@ module SlackBotHooks
       p "@artbot help triggered"
       {
         type: 'message',
-        text: "*Here's what I can do:*\n`art me` I'll send you a random piece of art.\n`hi <@#{bot_id}>` I'll greet you. (I'm polite.)\n`<@#{bot_id}> artists` I'll give you a list of all the artists currently in my gallery.\n`quiz me` I'll ask you questions about the art.\n`<@#{bot_id}> help` I'll give you this list of commands.",
+        text: "*Here's what you can tell me to do:*\n`art me` I'll send you a random piece of art.\n`quiz me` I'll ask you questions about the art.\n`hi <@#{bot_id}>` I'll greet you back. (I'm polite.)\n`<@#{bot_id}> artists` I'll give you a list of all the artists currently in my gallery.\n`<@#{bot_id}> help` I'll give you this list of commands.",
         channel: data['channel']
       }
     end
