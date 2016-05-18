@@ -4,7 +4,8 @@ class Art < ActiveRecord::Base
 
   validates :image, presence: true
   validates :title, :year, :century, :medium, presence: true
-  # callback to delete dependant questions first
+
+  # callback to delete dependent questions first
   before_destroy :delete_questions
 
   def delete_questions
