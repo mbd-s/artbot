@@ -5,31 +5,19 @@
   <meta property="og:image" content="<%= @art.image %>">
 <% end %>
 
-<div class ="container">
-<div class="row">
-  <h2>Art Up Close</h2>
-</div>
-
-<div class="row">
-  <div class="col-sm-6">
-  <%= image_tag @art.image, :class => "art-image-show" %>
-</div>
-  <div class="col-sm-6">
-
-    <strong>Title: </strong> &ldquo;<%= @art.title %>&rdquo;<br>
-    <strong>Artist: </strong> <%= @art.artist.name %><br>
-    <strong>Nationality: </strong> <%= @art.artist.nationality %><br>
-    <strong>Year: </strong> <%= @art.year %><br>
-    <strong>Era: </strong> <%= @art.century %> century<br>
-    <strong>Medium: </strong> <%= @art.medium %><br>
-    <br>
-    <%= link_to "Edit Artwork", edit_art_path, :class => "btn btn-info" %>
-    <br>
-    <br>
-    <%= button_to "Delete", @art, method: :delete, :class => "btn btn-danger" %>
-    <br>
-    <%= link_to "Add Question", new_art_question_path(@art, @question), :class => "btn btn-default" %>
-
+<div class ="container-fluid">
+  <div class="row-fluid">
+    <h3>&ldquo;<%= @art.title %>,&rdquo; by <%= @art.artist.name %> (<%= @art.artist.birth %>–<%= @art.artist.death %>)</h3>
   </div>
-</div>
+  <div class="row-fluid">
+    <div class="col-md-10">
+      <%= image_tag @art.image %>
+    </div>
+    <div class="col-md-2">
+      The <%= @art.medium %> <strong>&ldquo;<%= @art.title %>&rdquo;</strong> was created in <strong><%= @art.year %></strong> by the <%= @art.artist.nationality %> artist <strong><%= @art.artist.name %></strong>.
+      <%= link_to "Edit Artwork", edit_art_path, :class => "btn btn-info" %>
+      <%= button_to "Delete", @art, method: :delete, :class => "btn btn-danger" %>
+      <%= link_to "Add Question", new_art_question_path(@art, @question), :class => "btn btn-default" %>
+    </div>
+  </div>
 <div class ="container">
