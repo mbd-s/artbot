@@ -20,7 +20,6 @@ module SlackBotHooks
   end
 
   def message(event, bot_id)
-
     p "Message event triggered"
     data = JSON.parse(event.data)
     # uncomment line below to see full set of incoming data
@@ -28,7 +27,7 @@ module SlackBotHooks
     p data
     return if data['user'] == bot_id
     msg = data['text']
-
+    
     if msg =~ /art me/i
       p "art me triggered"
       #remove @@current_art from @@art array
@@ -68,6 +67,14 @@ module SlackBotHooks
           channel: data['channel']
         }
       end
+
+    elsif msg && @@answer && msg.include?(@@answer)
+      p "quiz correctly answered!"
+      {
+        type: 'message',
+        text: "Correct, <@#{data['user']}\nThe answer is: `#{@@answer}`>",
+        channel: data['channel']
+      }
 
     elsif msg =~ /art vandelay/i
       p "art vandeley triggered"
