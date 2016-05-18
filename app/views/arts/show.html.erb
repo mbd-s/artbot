@@ -10,11 +10,12 @@
     <h3>&ldquo;<%= @art.title %>,&rdquo; by <%= @art.artist.name %> (<%= @art.artist.birth %>–<%= @art.artist.death %>)</h3>
   </div>
   <div class="row show_image">
-    <div class="col-md-10">
+    <div class="col-md-12">
       <%= image_tag @art.image, class: "show_image" %>
     </div>
+  </div>
+  <div class="row icons">
     <div class="col-md-2">
-      The <%= @art.medium %> <strong>&ldquo;<%= @art.title %>&rdquo;</strong> was created in <strong><%= @art.year %></strong> by the <%= @art.artist.nationality %> artist <strong><%= @art.artist.name %></strong>.
       <%= link_to edit_art_path, :class => "btn btn-primary" do%>
         <i class="glyphicon glyphicon-pencil"></i>
       <% end %>
