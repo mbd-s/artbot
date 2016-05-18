@@ -6,7 +6,7 @@
 
 module SlackBotHooks
   # create array from all art id's
-  @@art = Art.pluck(:id)
+  @@art = []
 
   # stores last art piece shared
   @@current_art = nil
@@ -30,22 +30,28 @@ module SlackBotHooks
 
     if msg =~ /art me/i
       p "art me triggered"
-      #remove @@current_art from @@art array
+      # reset art list if empty
       if @@art.empty?
-        {
-          type: 'message',
-          text: "You've seen all the art! Enter `<@#{bot_id}> refresh` to refresh the gallery.",
-          channel: data['channel'],
-        }
-      else
-        # remove random ID from @@art and update @@current_art to the full Art piec from the DB
-        @@current_art = Art.find_by_id(@@art.delete(@@art.sample))
-        {
-          type: 'message',
-          text: "https://slack-artbot.herokuapp.com/arts/" + "#{@@current_art.id}",
-          channel: data['channel'],
-        }
+        @@art = Art.pluck(:id)
       end
+
+      # remove random ID from @@art and update @@current_art to the full Art piec from the DB
+      @@current_art = Art.find_by_id(@@art.delete(@@art.sample))
+
+      {
+        type: 'message',
+        text: "https://slack-artbot.herokuapp.com/arts/#{@@current_art.id}",
+        channel: data['channel'],
+      }
+
+      # MORE INFO
+    elsif @@current_art && msg == "<@#{bot_id}> more info"
+      p "more info triggered"
+      {
+        type: 'message',
+        text: "The #{@@current_art.medium} ​*#{@@current_art.title}*​ was created in ​*#{@@current_art.year}*​ by the #{@@current_art.artist.nationality} artist ​*#{@art.artist.name}*​.",
+        channel: data['channel']
+      }
 
     # QUIZ ME INITIALIZE
     elsif (msg =~ /quiz me/i)
@@ -80,7 +86,7 @@ module SlackBotHooks
       }
 
     # QUIZ ME TERMINATE **USER ASKS FOR ANSWER**
-  elsif msg == "<@#{bot_id}> answer"
+    elsif msg == "<@#{bot_id}> answer"
       p "quiz me terminate(answer request) triggered"
       answer = @@answer
       @@answer = nil
@@ -122,7 +128,7 @@ module SlackBotHooks
       p "@artbot help triggered"
       {
         type: 'message',
-        text: "*Here's what you can tell me to do:*\n`art me` I'll send you a random piece of art.\n`quiz me` I'll ask you questions about the art.\n`hi <@#{bot_id}>` I'll greet you back. (I'm polite.)\n`<@#{bot_id}> artists` I'll give you a list of all the artists currently in my gallery.\n`<@#{bot_id}> help` I'll give you this list of commands.",
+        text: "*Here's what you can tell me to do:*\n`art me` I'll send you a random piece of art.\n`<@#{bot_id}> more info` I'll give you more information about the last artwork.\n`quiz me` I'll ask you questions about the art.\n`hi <@#{bot_id}>` I'll greet you back. (I'm polite.)\n`<@#{bot_id}> artists` I'll give you a list of all the artists currently in my gallery.\n`<@#{bot_id}> help` I'll resend this list of commands.",
         channel: data['channel']
       }
     end
