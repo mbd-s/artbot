@@ -17,8 +17,10 @@ before_action :set_question, :except => [:index, :new, :create]
     @question = Question.create(question_params)
     @art.questions << @question
     if @question.save
+      flash[:success] = "New Question Added"
       redirect_to art_path(@art)
     else
+      flash[:error] = @question.errors.full_messages.to_sentence
       render :new
     end
   end
@@ -29,14 +31,17 @@ before_action :set_question, :except => [:index, :new, :create]
 
   def update
     if @question.update(question_params)
+      flash[:success] = "Question Updated"
       redirect_to questions_path
     else
+      flash[:error] = @question.errors.full_messages.to_sentence
       render :edit
     end
   end
 
   def destroy
     @question.destroy
+      flash[:success] = "Question Deleted"
     redirect_to question_path
   end
 

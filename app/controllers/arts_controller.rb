@@ -41,7 +41,7 @@ class ArtsController < ApplicationController
 
   def destroy
     @art.destroy
-    flash[:warning] = "Artwork Deleted"
+    flash[:success] = "Artwork Deleted"
     redirect_to arts_path
   end
 
