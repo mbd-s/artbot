@@ -2,7 +2,9 @@
 <html>
 <head>
   <title>Artbot</title>
-  
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
   <% if content_for? :og_meta %>
     <%= yield :og_meta %>
   <% end %>
@@ -10,6 +12,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
 
   <nav class="navbar navbar-default navbar-fixed-top">
