@@ -5,11 +5,10 @@
 
       <% @arts.each do |art| %>
         <div>
-         <%= image_tag art.image, :class => "art-image-show" %>
-
+         <%= link_to image_tag(art.image, :class => "art-image-show"), art_path(art) %>
         </div>
         <div>
-         <strong>Title:</strong> &ldquo;<%=link_to art.title, art_path(art) %>&rdquo;
+         <strong>Title:</strong> &ldquo;<%= art.title %>&rdquo;
         </div>
         <div>
          <strong>Artist:</strong> <%= art.artist.name %>
