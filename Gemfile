@@ -51,6 +51,8 @@ gem 'autoprefixer-rails'
 #bootswatch theme
 gem 'bootswatch-rails'
 
+gem "factory_girl_rails", "~> 4.0"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -65,6 +67,8 @@ group :development, :test do
   gem 'pry-byebug'
 
   gem 'rspec-rails'
+
+  gem 'shoulda-matchers'
 end
 
 group :development do

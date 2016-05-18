@@ -1,11 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe Admin, type: :model do
-  let(:justin) { Admin.new({:username => "jtam11", :email => "justinktam@gmail.com", :password => "justin", :confirmed_at => Date.today})}
- it { expect(justin.valid?).to eq(true)}
-end
 
-RSpec.describe Admin, type: :model do
-  let(:justin) { Admin.new({:username => "jtam11", :email => "justinktamgmail.com", :password => "justin", :confirmed_at => Date.today})}
- it { expect(justin.valid?).to eq(false)}
-end
+   subject(:admin) { FactoryGirl.create(:admin) }
+
+ end
+ #
+ # spec/factories/user.rb
+ #
+ FactoryGirl.define do
+   factory :admin do
+     sequence(:username) { |n| "admin#{n}" }
+     sequence(:email) { |n| "g#{n}@g.com" }
+     password "testtest"
+     confirmed_at { Time.now }
+   end
+ end
