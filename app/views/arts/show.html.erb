@@ -6,8 +6,6 @@
 <% end %>
 
   <div >
-
-
     <span>
       <h3>&ldquo;<%= @art.title %>,&rdquo; by <%= @art.artist.name %> (<%= @art.artist.birth %>–<%= @art.artist.death %>)</h3>
     </span>
@@ -27,8 +25,15 @@
     <% end %>
 
   </div>
+
   <div class="row">
     <div class="col-md-12">
       <%= image_tag @art.image %>
     </div>
   </div>
+  <% if current_admin %>
+    <% @art.questions.each do |question| %>
+      <strong>Question: </strong><%= question.text %>
+      <strong>Answer: </strong><%= question.answer %>
+    <% end %>
+  <% end %>
