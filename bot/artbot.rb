@@ -48,7 +48,7 @@ module SlackBotHooks
       end
 
     # QUIZ ME INITIALIZE
-  elsif (msg =~ /quiz me/i)
+    elsif (msg =~ /quiz me/i)
       p "quiz me triggered"
 
       if !@@answer #no active quiz
@@ -71,9 +71,22 @@ module SlackBotHooks
     # QUIZ ME **CORRECT ANSWER GIVEN**
     elsif msg && @@answer && msg.include?(@@answer)
       p "quiz correctly answered!"
+      answer = @@answer
+      @@answer = nil
       {
         type: 'message',
-        text: "Correct, <@#{data['user']}\nThe answer is: `#{@@answer}`>",
+        text: "Correct, <@#{data['user']}>\nThe answer is: `#{answer}`",
+        channel: data['channel']
+      }
+
+    # QUIZ ME TERMINATE **USER ASKS FOR ANSWER**
+  elsif msg == "<@#{bot_id}> answer"
+      p "quiz me terminate(answer request) triggered"
+      answer = @@answer
+      @@answer = nil
+      {
+        type: 'message',
+        text: "```QUIZ OVER!\nANSWER: #{answer}```",
         channel: data['channel']
       }
 
