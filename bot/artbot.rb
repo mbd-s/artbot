@@ -44,6 +44,15 @@ module SlackBotHooks
         channel: data['channel'],
       }
 
+      # MORE INFO
+    elsif @@current_art && msg == "<@#{bot_id}> more info"
+      p "more info triggered"
+      {
+        type: 'message',
+        text: "The #{@@current_art.medium} ​*#{@@current_art.title}*​ was created in ​*#{@@current_art.year}*​ by the #{@@current_art.artist.nationality} artist ​*#{@@current_art.artist.name}*​.",
+        channel: data['channel']
+      }
+
     # QUIZ ME INITIALIZE
     elsif (msg =~ /quiz me/i)
       p "quiz me triggered"
@@ -77,7 +86,7 @@ module SlackBotHooks
       }
 
     # QUIZ ME TERMINATE **USER ASKS FOR ANSWER**
-  elsif msg == "<@#{bot_id}> answer"
+    elsif msg == "<@#{bot_id}> answer"
       p "quiz me terminate(answer request) triggered"
       answer = @@answer
       @@answer = nil
