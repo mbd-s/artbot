@@ -121,5 +121,3 @@ add_art(picasso, picasso_art)
 #add_art(artist, artist_art)
 
 puts "Created #{Artist.count} artists, and #{Art.count} paintings."
-
-Art.all.each do 
