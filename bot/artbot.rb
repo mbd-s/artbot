@@ -56,7 +56,7 @@ module SlackBotHooks
         @@answer = q.answer
         {
           type: 'message',
-          text: "```QUESTION\n#{q.text}```",
+          text: "#{q.art.image}\n```QUESTION\n#{q.text}```",
           channel: data['channel']
         }
       else #quiz is active
