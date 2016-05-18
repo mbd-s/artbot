@@ -34,7 +34,7 @@ module SlackBotHooks
       if @@art.empty?
         {
           type: 'message',
-          text: "Out of art! Enter `<@#{bot_id}> refresh` to refresh the art library.",
+          text: "You've seen all the art! Enter `<@#{bot_id}> refresh` to refresh the gallery.",
           channel: data['channel'],
         }
       else
@@ -63,7 +63,7 @@ module SlackBotHooks
         p "quiz already active"
         {
           type: 'message',
-          text: "You are already in the middle of a quiz! Please respond with the answer or `<@#{bot_id}> answer` to finish this quiz.",
+          text: "You're already in the middle of a quiz! If you give up, enter `<@#{bot_id}> answer` to finish the quiz.",
           channel: data['channel']
         }
       end
@@ -75,7 +75,7 @@ module SlackBotHooks
       @@answer = nil
       {
         type: 'message',
-        text: "Correct, <@#{data['user']}>\nThe answer is: `#{answer}`",
+        text: "Correct, <@#{data['user']}>!\nThe answer was: `#{answer}`.",
         channel: data['channel']
       }
 
@@ -91,24 +91,16 @@ module SlackBotHooks
       }
 
     elsif msg =~ /art vandelay/i
-      p "art vandeley triggered"
+      p "art vandelay triggered"
       {
         type: 'message',
         text: "https://www.youtube.com/watch?v=j0Xtsi7Jcec",
         channel: data['channel']
       }
 
-    elsif msg =~ /.*weather.*(in|at) (?<location>\w*)\?$/i
-      m = data['text'].match(/.*weather.*(in|at) (?<location>\w*)\?$/i)
-      {
-        type: 'message',
-        text: "The weather in #{m[:location]} is nice!",
-        channel: data['channel']
-      }
-
     elsif msg == "hi <@#{bot_id}>"
       p "hi @artbot triggered"
-      res = "Hi, <@#{data['user']}>."
+      res = "Hi, <@#{data['user']}>!"
       p "returning #{res}"
       {
         type: 'message',
@@ -122,7 +114,7 @@ module SlackBotHooks
       p "returning #{res}"
       {
         type: 'message',
-        text: "#{res}",
+        text: "*These are all the artists I know about right now:*\n#{res}",
         channel: data['channel']
       }
 
@@ -130,7 +122,7 @@ module SlackBotHooks
       p "@artbot help triggered"
       {
         type: 'message',
-        text: "*For a list of commands, type:*\n`art me` to get a random art work \n`hi <@#{bot_id}>` to get a greeting back\n`<@#{bot_id}> artists` to get a list of artists back\n`<@#{bot_id}> help` to get this list of commands :)",
+        text: "*Here's what you can tell me to do:*\n`art me` I'll send you a random piece of art.\n`quiz me` I'll ask you questions about the art.\n`hi <@#{bot_id}>` I'll greet you back. (I'm polite.)\n`<@#{bot_id}> artists` I'll give you a list of all the artists currently in my gallery.\n`<@#{bot_id}> help` I'll give you this list of commands.",
         channel: data['channel']
       }
     end
