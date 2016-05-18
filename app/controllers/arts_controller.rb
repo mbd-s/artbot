@@ -33,6 +33,9 @@ class ArtsController < ApplicationController
     if @art.update(art_params)
       flash[:success] = "Artwork Updated"
       redirect_to art_path(@art)
+    else
+      flash[:error] = @art.errors.full_messages.to_sentence
+      render :edit
     end
   end
 
