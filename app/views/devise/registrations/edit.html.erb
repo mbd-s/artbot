@@ -1,7 +1,7 @@
 <br />
 <div class="well well-small">
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
-
+<div class="col-md-10 col-md-offset-1"
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "form-horizontal" }) do |f| %>
   <%= devise_error_messages! %>
     <div class="form-group">
