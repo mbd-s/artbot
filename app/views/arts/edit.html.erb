@@ -1,27 +1,27 @@
 <h2>Edit Artwork</h2>
+
 <%= form_for @art do |f| %>
     <div>
-
       <%= f.label :image %>
     </div>
     <div>
-      <%= f.text_field :image %>
+      <%= f.text_field :image, class:"form-control" %>
     </div>
     <div>
       <%= f.label :title %>
-      <%= f.text_field :title %>
+      <%= f.text_field :title, class:"form-control" %>
     </div>
     <div>
       <%= f.label :year %>
-      <%= f.text_field :year %>
+      <%= f.text_field :year, class:"form-control" %>
     </div>
     <div>
       <%= f.label :century %>
-      <%= f.text_field :century %>
+      <%= f.text_field :century, class:"form-control" %>
     </div>
     <div>
       <%= f.label :medium %>
-      <%= f.text_field :medium %>
+      <%= f.text_field :medium, class:"form-control" %>
     </div>
     <div>
       <%= f.submit "Save Art" %>
