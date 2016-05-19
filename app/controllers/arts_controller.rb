@@ -13,7 +13,7 @@ class ArtsController < ApplicationController
   def create
     @art = Art.new(art_params)
     if @art.save
-      flash[:success] = "New Artwork Added"
+      flash[:success] = "New artwork added."
       redirect_to @art
     else
       flash[:error] = @art.errors.full_messages.to_sentence
@@ -31,7 +31,7 @@ class ArtsController < ApplicationController
 
   def update
     if @art.update(art_params)
-      flash[:success] = "Artwork Updated"
+      flash[:success] = "Artwork updated."
       redirect_to art_path(@art)
     else
       flash[:error] = @art.errors.full_messages.to_sentence
@@ -41,7 +41,7 @@ class ArtsController < ApplicationController
 
   def destroy
     @art.destroy
-    flash[:success] = "Artwork Deleted"
+    flash[:success] = "Artwork deleted."
     redirect_to arts_path
   end
 
