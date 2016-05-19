@@ -6,7 +6,7 @@
   <% @arts.each do |art| %>
     <div class="row">
       <div class="col-sm-4 col-md-5">
-        <%= image_tag art.image, :class => " img-responsive" %>
+        <%= image_tag art.image, :class => "img-responsive" %>
       </div>
       <div class="col-sm-8 col-md-7">
         <%= link_to art_path(art) do %>
