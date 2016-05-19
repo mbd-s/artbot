@@ -51,6 +51,7 @@ gem 'autoprefixer-rails'
 #bootswatch theme
 gem 'bootswatch-rails'
 
+gem "factory_girl_rails", "~> 4.0"
 # uses bootstrap modal instead of native browser popups for confirm messages
 gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
 
@@ -68,6 +69,8 @@ group :development, :test do
   gem 'pry-byebug'
 
   gem 'rspec-rails'
+
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 group :development do

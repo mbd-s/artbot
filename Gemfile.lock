@@ -80,6 +80,11 @@ GEM
     erubis (2.7.0)
     eventmachine (1.2.0.1)
     execjs (2.6.0)
+    factory_girl (4.7.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.7.0)
+      factory_girl (~> 4.7.0)
+      railties (>= 3.0.0)
     faye-websocket (0.10.3)
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.5.1)
@@ -190,6 +195,8 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    shoulda-matchers (3.1.1)
+      activesupport (>= 4.0.0)
     slop (3.6.0)
     spring (1.7.1)
     sprockets (3.6.0)
@@ -238,6 +245,7 @@ DEPENDENCIES
   devise
   dotenv
   eventmachine
+  factory_girl_rails (~> 4.0)
   faye-websocket
   hirb
   http
@@ -251,6 +259,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  shoulda-matchers (~> 3.1)
   spring
   thin
   turbolinks
