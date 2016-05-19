@@ -69,7 +69,7 @@ module SlackBotHooks
       end
 
     # QUIZ ME **CORRECT ANSWER GIVEN**
-    elsif msg && @@answer && msg.include?(@@answer)
+    elsif @@answer && msg && msg.include?(@@answer)
       p "quiz correctly answered!"
       answer = @@answer
       @@answer = nil
