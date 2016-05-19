@@ -1,5 +1,3 @@
-<h2>Add New Artwork</h2>
-
 <%= form_for @art do |f| %>
     <div>
       <%= f.label :image %>
@@ -28,6 +26,6 @@
       <%= f.text_field :medium, class:"form-control" %>
     </div>
     <div class="submit_button">
-      <%= f.submit "Save Art", class: "btn btn-success" %>
+      <%= f.submit "Save Art", class: "btn btn-default" %>
     </div>
   <% end %>

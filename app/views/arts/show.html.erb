@@ -16,7 +16,7 @@
 
   <div >
     <span>
-      <h3>&ldquo;<%= @art.title %>,&rdquo; by <%= @art.artist.name %> (<%= @art.artist.birth %>–<%= @art.artist.death %>)</h3>
+      <h3>&ldquo;<%= @art.title %>&rdquo; by <%= @art.artist.name %> (<%= @art.artist.birth %>–<%= @art.artist.death %>)</h3>
     </span>
 
     <div class="twitter-button pull-right">
@@ -29,7 +29,7 @@
         <%= link_to edit_art_path, :class => "btn btn-default" do%>
           <span class="glyphicon glyphicon-pencil"></span>
         <% end %>
-        <%= link_to @art, method: :delete, :class => "btn btn-default" do %>
+        <%= link_to @art,title: "Delete \"#{@art.title.truncate(30)}\"?", data: { confirm: "Are you sure?\n\nYou are about to delete \"#{@art.title}\" by #{@art.artist.name}." }, method: :delete, :class => "btn btn-default" do %>
           <span class="glyphicon glyphicon-trash"></span>
         <% end %>
         <%= link_to new_art_question_path(@art, @question), :class => "btn btn-default" do%>

@@ -1,32 +1,22 @@
-
-<h1 class="arts-index-header">List Of Artworks</h1>
-<div class="container main">
-  <div class="row inline">
-
-      <% @arts.each do |art| %>
-        <div>
-         <%= link_to image_tag(art.image, :class => "thumbs"), art_path(art) %>
-        </div>
-        <div>
-         <strong>Title:</strong> &ldquo;<%= art.title %>&rdquo;
-        </div>
-        <div>
-         <strong>Artist:</strong> <%= art.artist.name %>
-        </div>
-        <div>
-         <strong>Nationality:</strong> <%= art.artist.nationality %>
-        </div>
-        <div>
-         <strong>Year:</strong> <%= art.year %><br>
-        </div>
-        <div>
-         <strong>Era:</strong> <%= art.century %> century<br>
-        </div>
-        <div>
-         <strong>Medium:</strong> <%= art.medium %><br>
-        </div>
-      <br>
-      <% end %>
-      <br>
-  </div>
+<div class="list-group">
+  <% @arts.each do |art| %>
+    <div class="row">
+      <div class="col-sm-4 col-md-5">
+        <%= image_tag art.image, :class => "img-responsive" %>
+      </div>
+      <div class="col-sm-8 col-md-7">
+        <%= link_to art_path(art) do %>
+          <h3 class="list-group-item-heading"> &ldquo;<%= art.title %>&rdquo; </h3>
+        <% end %>
+        <p class="list-group-item-text">
+          <strong>Artist:</strong> <%= art.artist.name %><br />
+          <strong>Nationality:</strong> <%= art.artist.nationality %><br />
+          <strong>Year:</strong> <%= art.year %><br />
+          <strong>Era:</strong> <%= art.century %> century<br />
+          <strong>Medium:</strong> <%= art.medium %><br />
+        </p>
+      </div>
+    </div>
+    <hr />
+  <% end %>
 </div>

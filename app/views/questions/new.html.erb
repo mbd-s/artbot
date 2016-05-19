@@ -3,15 +3,15 @@
     <%= f.label :text, "Question" %>
   </div>
   <div>
-    <%= f.text_area :text %>
+    <%= f.text_area :text, class:"form-control" %>
   </div>
   <div>
     <%= f.label :answer %>
   </div>
   <div>
-    <%= f.text_area :answer %>
+    <%= f.text_area :answer, class:"form-control" %>
   </div>
-  <div>
-    <%= f.submit "Save new question" %>
+  <div class="submit_button">
+    <%= f.submit "Save New Question", class: "btn btn-default" %>
   </div>
 <% end %>

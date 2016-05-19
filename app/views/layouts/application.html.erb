@@ -2,18 +2,19 @@
 <html>
 <head>
   <title>Artbot</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <% if content_for? :meta_og %>
     <%= yield :meta_og %>
   <% end %>
 
   <% if content_for? :meta_twitter %>
-    <%= yield :meta_twitter %>    
+    <%= yield :meta_twitter %>
   <% end %>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <%= favicon_link_tag 'favicon.ico' %>
 </head>
 
 <body>
@@ -42,11 +43,11 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Assets<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><%= link_to "See Artworks", arts_path %></li>
-                <li><%= link_to "See Questions", questions_path %></li>
+                <li><%= link_to "All artwork", arts_path %></li>
+                <li><%= link_to "All questions", questions_path %></li>
                 <li role="separator" class="divider"></li>
-                <li><%= link_to "Add Artwork", new_art_path %></li>
-                <li><%= link_to "Add Artist", new_artist_path %></li>
+                <li><%= link_to "Add a new artwork", new_art_path %></li>
+                <li><%= link_to "Add a new artist", new_artist_path %></li>
               </ul>
             </li>
               <li class="dropdown">
@@ -54,14 +55,14 @@
                     <%= current_admin.username %>
                   <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to "Edit Account", edit_admin_registration_path %></li>
+                  <li><%= link_to "Edit account", edit_admin_registration_path %></li>
                   <li role="separator" class="divider"></li>
-                  <li><%= link_to "Log Out", destroy_admin_session_path, method: :delete %></li>
+                  <li><%= link_to "Log out", destroy_admin_session_path, method: :delete %></li>
                 </ul>
               </li>
               <% else %>
-                <li><%= link_to "Sign Up", new_admin_registration_path %></li>
-                <li><%= link_to "Log In", new_admin_session_path %></li>
+                <li><%= link_to "Sign up", new_admin_registration_path %></li>
+                <li><%= link_to "Log in", new_admin_session_path %></li>
               <% end %>
 
           </ul>
