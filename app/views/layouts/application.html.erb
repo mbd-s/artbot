@@ -8,12 +8,13 @@
   <% end %>
 
   <% if content_for? :meta_twitter %>
-    <%= yield :meta_twitter %>    
+    <%= yield :meta_twitter %>
   <% end %>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <%= favicon_link_tag 'favicon.ico' %>
 </head>
 
 <body>
