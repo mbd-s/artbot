@@ -1,9 +1,3 @@
-# require 'http'
-# require 'json'
-# require 'eventmachine'
-# require 'faye/websocket'
-
-
 module SlackBotHooks
   # create array from all art id's
   @@art = []
@@ -57,25 +51,32 @@ module SlackBotHooks
     elsif (msg =~ /quiz me/i)
       p "quiz me triggered"
 
-      if !@@answer #no active quiz
+      if Question.count == 0 #no questions in db
+        {
+          type: 'message',
+          text: "Sorry, no questions available for a quiz.",
+          channel: data['channel']
+        }
+
+      elsif !@@answer #no active quiz
         q = Question.all.sample
         @@answer = q.answer
         {
           type: 'message',
-          text: "#{q.art.image}\n```QUESTION\n#{q.text}```",
+          text: "#{q.art.image}\n```#{q.text}```\nPlease enter the correct answer, or enter `<@#{bot_id}> answer` to end the quiz.",
           channel: data['channel']
         }
       else #quiz is active
         p "quiz already active"
         {
           type: 'message',
-          text: "You're already in the middle of a quiz! If you give up, enter `<@#{bot_id}> answer` to finish the quiz.",
+          text: "You're already in the middle of a quiz! Please enter the correct answer, or enter `<@#{bot_id}> answer` to end the quiz.",
           channel: data['channel']
         }
       end
 
     # QUIZ ME **CORRECT ANSWER GIVEN**
-    elsif msg && @@answer && msg.include?(@@answer)
+  elsif @@answer && msg && msg.include?(@@answer)
       p "quiz correctly answered!"
       answer = @@answer
       @@answer = nil
