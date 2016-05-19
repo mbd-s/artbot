@@ -8,7 +8,6 @@ RSpec.describe ArtsController, type: :controller do
     end
     context "is not current_admin" do
       it "doesn't render the :index view"
-      it "renders "
     end
   end
 
@@ -82,5 +81,4 @@ RSpec.describe ArtsController, type: :controller do
       it "cannot delete art from the database"
     end
   end
-  
 end
