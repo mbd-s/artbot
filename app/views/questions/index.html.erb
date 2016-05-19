@@ -12,7 +12,7 @@
         <%= link_to edit_art_question_path({:art_id => question.art, :id => question.id}), :class => "btn btn-default" do%>
         <span class="glyphicon glyphicon-pencil"></span>
         <% end %>
-        <%= link_to art_question_path({:art_id => question.art, :id => question.id}), method: :delete, :class => "btn btn-default" do%>
+        <%= link_to art_question_path({:art_id => question.art, :id => question.id}), title: "Delete Question", data: { confirm: "Are you sure?\n\nYou are about to delete question:\n\n \"#{question.text}\"" }, method: :delete, :class => "btn btn-default" do%>
         <span class="glyphicon glyphicon-trash"></span>
         <% end %>
       </div>
