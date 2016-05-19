@@ -1,8 +1,4 @@
-
-<h2 class="arts-index-header">List Of Artworks</h2>
-
 <div class="list-group">
-  <hr />
   <% @arts.each do |art| %>
     <div class="row">
       <div class="col-sm-4 col-md-5">
@@ -10,7 +6,7 @@
       </div>
       <div class="col-sm-8 col-md-7">
         <%= link_to art_path(art) do %>
-          <h3 class="list-group-item-heading"> <%= art.title %> </h3>
+          <h3 class="list-group-item-heading"> &ldquo;<%= art.title %>&rdquo; </h3>
         <% end %>
         <p class="list-group-item-text">
           <strong>Artist:</strong> <%= art.artist.name %><br />
