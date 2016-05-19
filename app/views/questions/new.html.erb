@@ -1,5 +1,3 @@
-<h2>Add A Question</h2>
-
 <%= form_for [@art, @question], url: art_questions_path do |f| %>
   <div>
     <%= f.label :text, "Question" %>
@@ -14,6 +12,6 @@
     <%= f.text_area :answer, class:"form-control" %>
   </div>
   <div class="submit_button">
-    <%= f.submit "Save New Question", class: "btn btn-success" %>
+    <%= f.submit "Save New Question", class: "btn btn-default" %>
   </div>
 <% end %>
