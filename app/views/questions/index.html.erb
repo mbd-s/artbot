@@ -1,3 +1,4 @@
+<h2>List of Questions</h2>
 
 <% @questions.each do |question| %>
   <hr />
@@ -13,7 +14,7 @@
         <%= link_to edit_art_question_path({:art_id => question.art, :id => question.id}), :class => "btn btn-primary" do%>
         <span class="glyphicon glyphicon-pencil"></span>
         <% end %>
-        <%= link_to art_question_path({:art_id => question.art, :id => question.id}), method: :delete, :class => "btn btn-warning" do%>
+        <%= link_to art_question_path({:art_id => question.art, :id => question.id}), method: :delete, :class => "btn btn-danger" do%>
         <span class="glyphicon glyphicon-trash"></span>
         <% end %>
       </div>

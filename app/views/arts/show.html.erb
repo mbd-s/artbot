@@ -16,7 +16,7 @@
 
   <div >
     <span>
-      <h3>&ldquo;<%= @art.title %>,&rdquo; by <%= @art.artist.name %> (<%= @art.artist.birth %>–<%= @art.artist.death %>)</h3>
+      <h3>&ldquo;<%= @art.title %>&rdquo; by <%= @art.artist.name %> (<%= @art.artist.birth %>–<%= @art.artist.death %>)</h3>
     </span>
 
     <div class="twitter-button pull-right">
@@ -26,13 +26,13 @@
 
     <% if current_admin %>
       <div class="icon_group">
-        <%= link_to edit_art_path, :class => "btn btn-default" do%>
+        <%= link_to edit_art_path, :class => "btn btn-primary" do%>
           <span class="glyphicon glyphicon-pencil"></span>
         <% end %>
-        <%= link_to @art, method: :delete, :class => "btn btn-default" do %>
+        <%= link_to @art, method: :delete, :class => "btn btn-danger" do %>
           <span class="glyphicon glyphicon-trash"></span>
         <% end %>
-        <%= link_to new_art_question_path(@art, @question), :class => "btn btn-default" do%>
+        <%= link_to new_art_question_path(@art, @question), :class => "btn btn-primary" do%>
           <span class="glyphicon glyphicon-plus"></span>
           <span class="glyphicon glyphicon-question-sign"></span>
         <% end %>
