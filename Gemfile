@@ -51,6 +51,9 @@ gem 'autoprefixer-rails'
 #bootswatch theme
 gem 'bootswatch-rails'
 
+# uses bootstrap modal instead of native browser popups for confirm messages
+gem 'data-confirm-modal', github: 'ifad/data-confirm-modal'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
