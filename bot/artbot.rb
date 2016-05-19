@@ -60,7 +60,7 @@ module SlackBotHooks
 
       elsif !@@answer #no active quiz
         q = Question.all.sample
-        @@answer = q.answer
+        @@answer = q.answer.downcase
         {
           type: 'message',
           text: "#{q.art.image}\n```#{q.text}```\nPlease enter the correct answer, or enter `<@#{bot_id}> answer` to end the quiz.",
@@ -76,7 +76,7 @@ module SlackBotHooks
       end
 
     # QUIZ ME **CORRECT ANSWER GIVEN**
-  elsif @@answer && msg && msg.include?(@@answer)
+  elsif @@answer && msg && msg.downcase.include?(@@answer)
       p "quiz correctly answered!"
       answer = @@answer
       @@answer = nil
