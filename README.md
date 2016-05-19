@@ -7,6 +7,8 @@
 ##What is Artbot?
 Artbot is a Rails application hosting a [Slack chatbot integration](https://api.slack.com/bot-users) written in Ruby that can serve information on-demand from its database about artists, art pieces and deliver quizzes.
 
+![alt text](public/demo.gif)
+
 
 ##Features
 
@@ -54,8 +56,6 @@ Artbot is a Rails application hosting a [Slack chatbot integration](https://api.
 * Multiple choice quiz
 * Track correct answers per user 
 
-## Screenshots
-![alt text](public/demo.gif)
 
 ## Contributors
 * [Anna Schwab](https://github.com/cloverharvest)
