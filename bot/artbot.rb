@@ -49,7 +49,7 @@ module SlackBotHooks
       p "more info triggered"
       {
         type: 'message',
-        text: "The #{@@current_art.medium} ​*#{@@current_art.title}*​ was created in ​*#{@@current_art.year}*​ by the #{@@current_art.artist.nationality} artist ​*#{@art.artist.name}*​.",
+        text: "The #{@@current_art.medium} ​*#{@@current_art.title}*​ was created in ​*#{@@current_art.year}*​ by the #{@@current_art.artist.nationality} artist ​*#{@@current_art.artist.name}*​.",
         channel: data['channel']
       }
 
