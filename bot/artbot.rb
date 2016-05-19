@@ -1,9 +1,3 @@
-# require 'http'
-# require 'json'
-# require 'eventmachine'
-# require 'faye/websocket'
-
-
 module SlackBotHooks
   # create array from all art id's
   @@art = []
