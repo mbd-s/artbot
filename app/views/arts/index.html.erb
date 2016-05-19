@@ -9,8 +9,8 @@
           <h3 class="list-group-item-heading"> &ldquo;<%= art.title %>&rdquo; </h3>
         <% end %>
         <p class="list-group-item-text">
-          <strong>Artist:</strong> <%= art.artist.name %><br />
-          <strong>Nationality:</strong> <%= art.artist.nationality %><br />
+          <strong>Artist:</strong> <%= art.artist.try(:name) %><br />
+          <strong>Nationality:</strong> <%= art.artist.try(:nationality) %><br />
           <strong>Year:</strong> <%= art.year %><br />
           <strong>Era:</strong> <%= art.century %> century<br />
           <strong>Medium:</strong> <%= art.medium %><br />
