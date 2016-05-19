@@ -51,7 +51,14 @@ module SlackBotHooks
     elsif (msg =~ /quiz me/i)
       p "quiz me triggered"
 
-      if !@@answer #no active quiz
+      if Question.count == 0 #no questions in db
+        {
+          type: 'message',
+          text: "Sorry, no questions available for a quiz.",
+          channel: data['channel']
+        }
+        
+      elsif !@@answer #no active quiz
         q = Question.all.sample
         @@answer = q.answer
         {
