@@ -1,23 +1,50 @@
-== README
+# Rails & Slack Art-Bot
 
-[Heroku app](https://slack-artbot.herokuapp.com/)
+[Heroku App](https://slack-artbot.herokuapp.com/)
 
-Twitter account: [@SlackArtbot](https://twitter.com/slackartbot)
+[@SlackArtbot](https://twitter.com/slackartbot) Twitter
 
-##Boilerplate
+##What is Artbot?
+Artbot is a Rails application hosting a [Slack chatbot integration](https://api.slack.com/bot-users) written in Ruby that can serve information on-demand from its database about artists, art pieces and deliver quizzes.
 
-###Ruby version
 
-###Technologies used
+##Features
 
-###Features
+###Rails App
+* CRUD-able database
+* User login	
+* Responsive design 
+* Meta tags optimized to display more information for Slack, Twitter, and Facebook
 
-* meta tags optimized for Slack, Twitter, and Facebook
+###Bot
 * 
+
+##Technologies
+`Ruby 2.2.1`
+`Rails 4.2.6`
+`PostgreSQL`
+
+###Websockets
+`faye-websocket`
+`thin`
+`eventmachine`
+
+###Additional
+`devise`
+`http`
+`json`
+
+
+###Development/Testing
+`rspec`
+`pry-byebug`
+
+
 
 ###System dependencies
 
 ###Configuration
+-
 
 ###Database creation
 
