@@ -87,7 +87,7 @@ module SlackBotHooks
       }
 
     # QUIZ ME TERMINATE **USER ASKS FOR ANSWER**
-    elsif msg == "<@#{bot_id}> answer"
+  elsif @@answer && msg == "<@#{bot_id}> answer"
       p "quiz me terminate(answer request) triggered"
       answer = @@answer
       @@answer = nil
